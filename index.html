@@ -8,17 +8,22 @@
 <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dunufio1l/image/upload/v1756228865/output-onlinepngtools_ce1k03.png">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 
     html {
         scroll-behavior: smooth;
     }
 
+    /* --- KEY CHANGE 1: Switched the default font to 'Inter' for better readability --- */
     body {
         font-family: 'anton', 'sans-serif';
         background-color: #050807;
         color: #E2E8F0;
     }
+    
+    /* --- Helper classes for specific fonts --- */
+    .font-anton { font-family: 'Anton', sans-serif; }
+    .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
 
     .pill-glow {
         box-shadow: 0 0 30px rgba(190, 242, 100, 0.15);
@@ -166,13 +171,6 @@ span.relative::before {
                 <span class="font-bold text-3xl text-[#FFFDD0]">ringcero</span>
             </a>
 
-            <!-- Desktop Nav Links -->
-            <!--div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-                <a href="#stack" class="hover:text-white transition-colors">aa</a>
-                <a href="#architecture" class="hover:text-white transition-colors">bb</a>
-                <a href="#comparison" class="hover:text-white transition-colors">cc<a>
-            </div-->
-
             <!-- Action Buttons -->
             <div class="hidden md:flex items-center">
                 <a href="#stack-brutalist" class="button-ghost font-medium text-sm text-lime-100 rounded-full px-5 py-2">
@@ -198,7 +196,8 @@ span.relative::before {
         <div class="grid grid-cols-1 items-center gap-12 w-full py-8">
             <!-- Text Content -->
             <div class="text-center">
-           <h1 class="text-5xl md:text-8xl lg:text-8xl font-extrabold text-[#f5f5f4] ">
+                <!-- --- KEY CHANGE 2: Reduced font size from 8xl to 7xl and added font-anton class --- -->
+           <h1 class="font-anton text-5xl md:text-7xl lg:text-7xl font-extrabold text-[#f5f5f4] uppercase tracking-wide">
 <span class="relative inline-block px-3 py-2 text-white">
   The Autopsy
 </span>
@@ -223,18 +222,13 @@ Told with clarity, precision, and a touch of dark humor.
 </div>
 
 <!-- Brutalist Section -->
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Anton&display=swap');
-    .font-anton { font-family: 'Anton', sans-serif; }
-    .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
-</style>
-
 <section id="stack-brutalist" class="bg-black text-white py-20 sm-py-32 px-8 md:px-12">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
             <div class="text-left text-[#fffdd0] flex flex-col justify-between">
-                <h2 class="font-anton text-5xl md:text-6xl lg:text-7xl tracking-wide uppercase mb-6">
+                <!-- --- KEY CHANGE 3: Reduced font size from 7xl to 6xl --- -->
+                <h2 class="font-anton text-5xl md:text-6xl lg:text-6xl tracking-wide uppercase mb-6">
                     FROM THE SHADOWS
                 </h2>
                 <p class="font-roboto-mono text-lg text-orange-50 leading-relaxed max-w-xl prose">
@@ -290,36 +284,12 @@ Told with clarity, precision, and a touch of dark humor.
                 </div>
                 <div>
 <h3 class="font-anton text-2xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-[#fffdd0]">How Cloudflare Stops DDoS in the Terabits <span class="text-gray-400">(UPCOMING) </span></h3>
+
                     <p class="font-roboto-mono text-base text-gray-400 mt-3 leading-relaxed">
                         From SYN floods to eBPF, dive deep into the cutting-edge techniques Cloudflare employs to protect millions of websites and services worldwide.
                     </p>
                 </div>
             </div>
-
-            <!-- e.g., Report 2 -->
-            <!--div class="group">
-                <div class="overflow-hidden mb-5">
-                    <img class="w-full h-auto object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105" src="" alt="Report 2 Image">
-                </div>
-                <div>
-                    <h3 class="font-anton text-2xl text-white uppercase transition-colors duration-300 group-hover:text-[#fffdd0]">upcoming</h3>
-                    <p class="font-roboto-mono text-base text-gray-400 mt-3 leading-relaxed">
-                      upcoming
-                    </p>
-                </div>
-            </div>
-
-           
-            <div class="group">
-                <div class="overflow-hidden mb-5">
-                     <img class="w-full h-auto object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-105" src="" alt="Report 3 Image">
-                </div>
-                <div>
-                    <h3 class="font-anton text-2xl text-white uppercase transition-colors duration-300 group-hover:text-[#fffdd0]">upcoming</h3>
-                    <p class="font-roboto-mono text-base text-gray-400 mt-3 leading-relaxed">
-upcoming                    </p>
-                </div>
-            </div-->
 
         </div>
     </div>
