@@ -254,10 +254,23 @@ Told with clarity, precision, and a touch of dark humor.
                                 Get Access
                             </button>
                         </div>
-                        <!-- ADDED: Cloudflare Turnstile Widget -->
-                        <div class="cf-turnstile mt-4" data-size="small" data-sitekey="0x4AAAAAABvRbXQF4cQb7fVj"></div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEW WIDGET SECTION -->
+<section id="turnstile-section" class="bg-black pb-20 sm:pb-32 px-8 md:px-12 -mt-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <!-- Left column is empty -->
+            <div></div>
+            <!-- Right column contains the widget -->
+            <div>
+                <div id="turnstile-widget-container">
+<div class="cf-turnstile" data-sitekey="0x4AAAAAABvRbXQF4cQb7fVj" data-size="flexible"></div>                </div>
             </div>
         </div>
     </div>
@@ -345,14 +358,14 @@ Told with clarity, precision, and a touch of dark humor.
 
     const form = e.target;
     const action = form.action;
+    const formContainer = document.getElementById('form-container');
     const submitButton = form.querySelector('button[type="submit"]');
     const emailInput = form.querySelector('input[name="email"]');
     
-    // MODIFIED: Get Turnstile response token from the form
-    const formData = new FormData(form);
-    const turnstileResponse = formData.get('cf-turnstile-response');
+    // Get Turnstile response token from the document, as it's in a different section
+    const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
+    const turnstileResponse = turnstileInput ? turnstileInput.value : null;
 
-    // MODIFIED: Create the payload including the Turnstile response
     const payload = {
         email: emailInput.value,
         "cf-turnstile-response": turnstileResponse
@@ -372,7 +385,7 @@ Told with clarity, precision, and a touch of dark humor.
         });
 
         if (response.ok) {
-            waitlistForm.innerHTML = `
+            formContainer.innerHTML = `
                 <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
                     <p class="text-base text-lime-200">Thanks, you're on the list!</p>
                 </div>
@@ -381,7 +394,7 @@ Told with clarity, precision, and a touch of dark humor.
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        waitlistForm.innerHTML = `
+        formContainer.innerHTML = `
              <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
                 <p class="text-base text-red-200">Oops! Please try again.</p>
             </div>
