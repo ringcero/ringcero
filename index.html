@@ -7,8 +7,8 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dunufio1l/image/upload/v1756337299/icon2_maz2gt.png">
 
-<!-- ADDED: Cloudflare Turnstile Script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<!-- MODIFIED: Cloudflare Turnstile Script with onload callback -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
@@ -261,7 +261,7 @@ Told with clarity, precision, and a touch of dark humor.
     </div>
 </section>
 
-<!-- NEW WIDGET SECTION -->
+<!-- WIDGET SECTION -->
 <section id="turnstile-section" class="bg-black pb-20 sm:pb-32 px-8 md:px-12 -mt-24">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -269,8 +269,8 @@ Told with clarity, precision, and a touch of dark humor.
             <div></div>
             <!-- Right column contains the widget -->
             <div>
-                <div id="turnstile-widget-container">
-<div class="cf-turnstile" data-sitekey="0x4AAAAAABvRbXQF4cQb7fVj" data-size="flexible"></div>                </div>
+                <!-- MODIFIED: Container is now empty. Turnstile will be rendered here by JavaScript -->
+                <div id="turnstile-widget-container"></div>
             </div>
         </div>
     </div>
@@ -403,7 +403,36 @@ Told with clarity, precision, and a touch of dark humor.
         console.error('Submission error:', error);
     }
   });
+</script>
 
+<!-- ADDED: SCRIPT TO RENDER TURNSTILE ON EVENT -->
+<script>
+  let turnstileRendered = false;
+
+  function renderTurnstile() {
+    if (turnstileRendered) {
+      return; // Exit if the widget has already been rendered
+    }
+    
+    const container = document.getElementById('turnstile-widget-container');
+    if (container) {
+      turnstile.render(container, {
+        sitekey: '0x4AAAAAABvRbXQF4cQb7fVj', // Replace with your actual sitekey
+        theme: 'dark',
+        size: 'flexible'
+      });
+      turnstileRendered = true;
+    }
+  }
+
+  // This is the function called by the script's onload parameter
+  function onloadTurnstileCallback() {
+    const emailInput = document.querySelector('input[name="email"]');
+    if (emailInput) {
+      // Renders the widget when the user clicks or tabs into the email field
+      emailInput.addEventListener('focus', renderTurnstile, { once: true });
+    }
+  }
 </script>
 
 </body>
