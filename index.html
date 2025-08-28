@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dunufio1l/image/upload/v1756337299/icon2_maz2gt.png">
 
-<!-- Cloudflare Turnstile Script with onload callback -->
+<!-- MODIFIED: Cloudflare Turnstile Script with onload callback -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
 
 <style>
@@ -52,27 +52,100 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 30px rgba(179, 185, 255, 0.4);
     }
-    
-    span.relative {
-      position: relative;
-      z-index: 1; /* keeps text on top */
+
+    .stack-card {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.4) 100%);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
     }
 
-    span.relative::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #1a1a1a;
-      transform: rotate(-1deg);
-      z-index: -1; /* behind the text */
-      border-radius: 0px; 
+    .stack-card:hover {
+        border-color: rgba(190, 242, 100, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
+    
+    .feature-glow {
+        box-shadow: 0 0 50px rgba(190, 242, 100, 0.1);
+    }
+
+    .architecture-bg {
+        background: radial-gradient(ellipse 100% 60% at 50% 50%, rgba(12, 74, 50, 0.2), transparent);
+    }
+
+    .comparison-row {
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .comparison-row:hover {
+        background-color: rgba(15, 23, 42, 0.3);
+    }
+
+    .flow-arrow {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+    }
+
+    .tech-badge {
+        background: linear-gradient(135deg, rgba(190, 242, 100, 0.1) 0%, rgba(190, 242, 100, 0.05) 100%);
+        border: 1px solid rgba(190, 242, 100, 0.2);
+    }
+
+    .section-divider {
+        background: linear-gradient(90deg, transparent 0%, rgba(190, 242, 100, 0.3) 50%, transparent 100%);
+        height: 1px;
+    }
+
+    .bento-grid-glow {
+        background: radial-gradient(circle at 50% 50%, rgba(190, 242, 100, 0.05), transparent 70%);
+    }
+
+    .bento-item {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.2) 100%);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        backdrop-filter: blur(12px);
+        transition: all 0.3s ease;
+    }
+
+    .bento-item:hover {
+        border-color: rgba(190, 242, 100, 0.4);
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .bento-item svg {
+        transition: transform 0.3s ease;
+    }
+
+    .bento-item:hover svg {
+        transform: scale(1.1);
+    }
+span.relative {
+  position: relative;
+  z-index: 1; /* keeps text on top */
+}
+
+span.relative::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  transform: rotate(-1deg);
+  z-index: -1; /* behind the text */
+  border-radius: 0px; 
+}
 
 </style>
-</head>
+  </head>
 <body>
   <div class="main-container  flex flex-col  rounded-b-2xl border-b border-white/10  relative overflow-hidden">
     
@@ -160,7 +233,7 @@ Told with clarity, precision, and a touch of dark humor.
                     </p>
                 </div>
                 
-                <div id="form-container" class="flex text-black flex-col gap-6 pt-6 px-6 bg-white/5 rounded-2xl border border-zinc-700/50 bg-[#1D1D1F]/90 mt-6">
+                <div id="form-container" class="flex text-black flex-col gap-6 p-6 bg-white/5 rounded-2xl border border-zinc-700/50 bg-[#1D1D1F]/90 mt-6">
                     <p class="text-base text-orange-50 leading-relaxed text-left tracking-normal">
                         The first report is imminent. Drop your email below to get it the moment it's released.
                     </p>
@@ -182,8 +255,6 @@ Told with clarity, precision, and a touch of dark humor.
                             </button>
                         </div>
                     </form>
-                    <!-- Container for success/error messages -->
-                    <div id="form-message" class="mt-2 -mb-2"></div>
                 </div>
             </div>
         </div>
@@ -198,9 +269,8 @@ Told with clarity, precision, and a touch of dark humor.
             <div></div>
             <!-- Right column contains the widget -->
             <div>
-                <div id="turnstile-widget-container">
-                    <!-- Turnstile will be rendered here by JavaScript -->
-                </div>
+                <!-- MODIFIED: Container is now empty. Turnstile will be rendered here by JavaScript -->
+                <div id="turnstile-widget-container"></div>
             </div>
         </div>
     </div>
@@ -244,10 +314,22 @@ Told with clarity, precision, and a touch of dark humor.
       &copy; <span id="year"></span> ringcero. All Rights Reserved.
     </p>
    <div class="flex items-center space-x-6">
-            <a href="https://x.com/ringcero" target="_blank" class="text-gray-400 hover:text-[#fffdd0] transition-colors" aria-label="X social media"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
-            <a href="https://www.youtube.com/@ringcero" target="_blank" class="text-gray-400 hover:text-[#fffdd0] transition-colors" aria-label="YouTube channel"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.506 2.506 0 0 1-1.768 1.768C18.256 19 12 19 12 19s-6.255 0-7.814-.418a2.506 2.506 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.506 2.506 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.255 0 7.812.418ZM15.197 12 10 14.732V9.268L15.197 12Z" clip-rule="evenodd"></path></svg></a>
-            <a href="mailto:contact@ringcero.com" class="text-gray-400 hover:text-[#fffdd0] transition-colors" aria-label="Contact via email"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
-    </div>
+            <a href="https://x.com/ringcero" target="_blank" class="text-gray-400 hover:text-[#fffdd0] transition-colors" aria-label="X social media">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                </svg>
+            </a>
+            <a href="https://www.youtube.com/@ringcero" target="_blank" class="text-gray-400 hover:text-[#fffdd0] transition-colors" aria-label="YouTube channel">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.506 2.506 0 0 1-1.768 1.768C18.256 19 12 19 12 19s-6.255 0-7.814-.418a2.506 2.506 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.506 2.506 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.255 0 7.812.418ZM15.197 12 10 14.732V9.268L15.197 12Z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+            <a href="mailto:contact@ringcero.com" class="text-gray-400 hover:text-[#fffdd0] transition-colors" aria-label="Contact via email">
+                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+            </a>
+        </div>
   </div>
 </footer>
 
@@ -256,13 +338,20 @@ Told with clarity, precision, and a touch of dark humor.
 
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-  mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+  const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
+  });
 
   // --- AJAX FORM SUBMISSION SCRIPT ---
   const waitlistForm = document.getElementById('waitlist-form');
-  const formContainer = document.getElementById('form-container');
-  const formMessage = document.getElementById('form-message');
   
   waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault(); 
@@ -272,64 +361,62 @@ Told with clarity, precision, and a touch of dark humor.
     const submitButton = form.querySelector('button[type="submit"]');
     const emailInput = form.querySelector('input[name="email"]');
     
+    // Get Turnstile response token from the document, as it's in a different section
     const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
     const turnstileResponse = turnstileInput ? turnstileInput.value : null;
 
-    if (!turnstileResponse) {
-        formMessage.innerHTML = `<div class="text-center"><p class="text-sm text-red-300">Please complete the security check.</p></div>`;
-        return;
-    }
-
-    const payload = { email: emailInput.value, "cf-turnstile-response": turnstileResponse };
+    const payload = {
+        email: emailInput.value,
+        "cf-turnstile-response": turnstileResponse
+    };
 
     submitButton.textContent = 'Submitting...';
     submitButton.disabled = true;
-    formMessage.innerHTML = ''; // Clear previous messages
 
     try {
         const response = await fetch(action, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
             body: JSON.stringify(payload),
         });
 
         if (response.ok) {
-            // SUCCESS: Replace the CONTENT of the form container and remove the widget
-            formContainer.innerHTML = `
-                <div class="text-center w-full flex flex-col justify-center items-center h-full py-8">
-                    <p class="text-lg text-lime-200">Thanks, you're on the list!</p>
-                </div>`;
-            if (turnstileWidgetId) {
-                turnstile.remove(turnstileWidgetId);
-            }
+            // MODIFIED: Replace the form's content instead of the form itself
+            form.innerHTML = `
+                <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
+                    <p class="text-base text-lime-200">Thanks, you're on the list!</p>
+                </div>
+            `;
         } else {
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        // FAILURE: Show error, re-enable button, and reset the widget
-        formMessage.innerHTML = `<div class="text-center"><p class="text-sm text-red-300">Oops! Submission failed. Please try again.</p></div>`;
-        submitButton.textContent = 'Get Access';
-        submitButton.disabled = false;
-        if (turnstileWidgetId) {
-            turnstile.reset(turnstileWidgetId);
-        }
+        // MODIFIED: Replace the form's content instead of the form itself
+        form.innerHTML = `
+             <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
+                <p class="text-base text-red-200">Oops! Please try again.</p>
+            </div>
+        `;
         console.error('Submission error:', error);
     }
   });
 </script>
 
-<!-- SCRIPT TO RENDER & MANAGE TURNSTILE -->
+<!-- ADDED: SCRIPT TO RENDER TURNSTILE ON EVENT -->
 <script>
   let turnstileRendered = false;
-  let turnstileWidgetId = null; // Variable to hold the widget ID
 
   function renderTurnstile() {
-    if (turnstileRendered) return;
+    if (turnstileRendered) {
+      return; // Exit if the widget has already been rendered
+    }
     
     const container = document.getElementById('turnstile-widget-container');
     if (container) {
-      // Capture the ID returned by turnstile.render()
-      turnstileWidgetId = turnstile.render(container, {
+      turnstile.render(container, {
         sitekey: '0x4AAAAAABvRbXQF4cQb7fVj', // Replace with your actual sitekey
         theme: 'dark',
         size: 'flexible'
@@ -342,6 +429,7 @@ Told with clarity, precision, and a touch of dark humor.
   function onloadTurnstileCallback() {
     const emailInput = document.querySelector('input[name="email"]');
     if (emailInput) {
+      // Renders the widget when the user clicks or tabs into the email field
       emailInput.addEventListener('focus', renderTurnstile, { once: true });
     }
   }
