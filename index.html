@@ -358,7 +358,6 @@ Told with clarity, precision, and a touch of dark humor.
 
     const form = e.target;
     const action = form.action;
-    const formContainer = document.getElementById('form-container');
     const submitButton = form.querySelector('button[type="submit"]');
     const emailInput = form.querySelector('input[name="email"]');
     
@@ -385,7 +384,8 @@ Told with clarity, precision, and a touch of dark humor.
         });
 
         if (response.ok) {
-            formContainer.innerHTML = `
+            // UPDATED: Replace the form itself with the success message
+            form.outerHTML = `
                 <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
                     <p class="text-base text-lime-200">Thanks, you're on the list!</p>
                 </div>
@@ -394,7 +394,8 @@ Told with clarity, precision, and a touch of dark humor.
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        formContainer.innerHTML = `
+        // UPDATED: Replace the form itself with the error message
+        form.outerHTML = `
              <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
                 <p class="text-base text-red-200">Oops! Please try again.</p>
             </div>
