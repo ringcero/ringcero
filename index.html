@@ -361,7 +361,6 @@ Told with clarity, precision, and a touch of dark humor.
     const submitButton = form.querySelector('button[type="submit"]');
     const emailInput = form.querySelector('input[name="email"]');
     
-    // Get Turnstile response token from the document, as it's in a different section
     const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
     const turnstileResponse = turnstileInput ? turnstileInput.value : null;
 
@@ -384,17 +383,24 @@ Told with clarity, precision, and a touch of dark humor.
         });
 
         if (response.ok) {
-            // MODIFIED: Replace the form's content instead of the form itself
+            // Replace the form's content with the success message
             form.innerHTML = `
                 <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
                     <p class="text-base text-lime-200">Thanks, you're on the list!</p>
                 </div>
             `;
+            
+            // ADDED: Hide the Turnstile widget section on success
+            const turnstileSection = document.getElementById('turnstile-section');
+            if (turnstileSection) {
+                turnstileSection.style.display = 'none';
+            }
+
         } else {
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        // MODIFIED: Replace the form's content instead of the form itself
+        // Replace the form's content with the error message
         form.innerHTML = `
              <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
                 <p class="text-base text-red-200">Oops! Please try again.</p>
@@ -405,13 +411,13 @@ Told with clarity, precision, and a touch of dark humor.
   });
 </script>
 
-<!-- ADDED: SCRIPT TO RENDER TURNSTILE ON EVENT -->
+<!-- SCRIPT TO RENDER TURNSTILE ON EVENT -->
 <script>
   let turnstileRendered = false;
 
   function renderTurnstile() {
     if (turnstileRendered) {
-      return; // Exit if the widget has already been rendered
+      return;
     }
     
     const container = document.getElementById('turnstile-widget-container');
@@ -425,11 +431,9 @@ Told with clarity, precision, and a touch of dark humor.
     }
   }
 
-  // This is the function called by the script's onload parameter
   function onloadTurnstileCallback() {
     const emailInput = document.querySelector('input[name="email"]');
     if (emailInput) {
-      // Renders the widget when the user clicks or tabs into the email field
       emailInput.addEventListener('focus', renderTurnstile, { once: true });
     }
   }
