@@ -332,49 +332,48 @@ Told with clarity, precision, and a touch of dark humor.
     });
   });
 
-  // --- AJAX FORM SUBMISSION SCRIPT ---
+  // --- AJAX FORM SUBMISSION SCRIPT (FORMSPARK JSON ENDPOINT) ---
   const waitlistForm = document.getElementById('waitlist-form');
   const formContainer = document.getElementById('form-container');
 
-  // Listen for the form's submit event
   waitlistForm.addEventListener('submit', async (e) => {
-    // 1. Prevent the default form submission (which causes a redirect)
     e.preventDefault(); 
 
     const form = e.target;
-    const formData = new FormData(form);
-    const action = form.action; // Get the action URL from the form's HTML
+    const action = form.action;
     const submitButton = form.querySelector('button[type="submit"]');
+    const emailInput = form.querySelector('input[name="email"]');
 
-    // 2. Give the user visual feedback that something is happening
+    // Create a payload object with the form data
+    const payload = {
+        email: emailInput.value,
+    };
+
     submitButton.textContent = 'Submitting...';
     submitButton.disabled = true;
 
     try {
-        // 3. Send the form data to Formspark using the modern 'fetch' API
         const response = await fetch(action, {
             method: 'POST',
-            body: formData,
+            // Set headers as required by Formspark's AJAX documentation
             headers: {
-                // This header tells Formspark to expect an AJAX request and respond with JSON
-                'Accept': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            // Convert the JavaScript object to a JSON string
+            body: JSON.stringify(payload),
         });
 
-        // 4. Check if Formspark processed the submission successfully
         if (response.ok) {
-            // If successful, replace the entire form with a thank you message
             formContainer.innerHTML = `
                 <p class="text-lg text-center text-lime-300 leading-relaxed tracking-normal">
                     Thanks for joining! We'll be in touch soon.
                 </p>
             `;
         } else {
-            // If Formspark returned an error (e.g., server issue), throw an error
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        // 5. If there was a network error or the submission failed, show an error message
         formContainer.innerHTML = `
             <p class="text-lg text-center text-red-400 leading-relaxed tracking-normal">
                 Oops! Something went wrong. Please try again or contact us directly.
