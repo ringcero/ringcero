@@ -14,14 +14,12 @@
         scroll-behavior: smooth;
     }
 
-    /* --- KEY CHANGE 1: Switched the default font to 'Inter' for better readability --- */
     body {
         font-family: 'anton', 'sans-serif';
         background-color: #050807;
         color: #E2E8F0;
     }
     
-    /* --- Helper classes for specific fonts --- */
     .font-anton { font-family: 'Anton', sans-serif; }
     .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
 
@@ -144,13 +142,10 @@ span.relative::before {
 }
 
 </style>
-  <!-- Waitlist Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://www.waitforit.me/wfiEmbedStyles.css"></link>
   </head>
 <body>
   <div class="main-container  flex flex-col  rounded-b-2xl border-b border-white/10  relative overflow-hidden">
     
-    <!-- Video Background -->
     <div class="">
        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 rounded-b-2xl">
     <source src="https://res.cloudinary.com/dunufio1l/video/upload/v1756211315/AdobeStock_638077140_1_orutrw.mov" type="video/mp4">
@@ -159,44 +154,35 @@ span.relative::before {
   <div class="absolute inset-0 bg-[#680df8]/30 z-0" style="backdrop-filter: blur(2px);"></div>
 
     </div>
-    <!-- Overlay for text readability -->
     <div class="absolute top-0 left-0 w-full h-full bg-black/90 z-[-1]"></div>
 
 
-    <!-- Header / Navigation -->
     <header class="relative px-7 md:px-12 py-6">
         <nav class="flex justify-between items-center">
-            <!-- Logo -->
             <a href="#" class="flex items-center space-x-3">
                 <span class="font-bold text-3xl text-[#FFFDD0]">ringcero</span>
             </a>
 
-            <!-- Action Buttons -->
             <div class="hidden md:flex items-center">
                 <a href="#stack-brutalist" class="button-ghost font-medium text-sm text-lime-100 rounded-full px-5 py-2">
                     Contact  ›
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#1a1a1a]/90 rounded-lg backdrop-blur-sm">
             <a href="#stack-brutalist" class="block py-3 px-5 text-base text-white text-right hover:bg-white/5 rounded-lg">Contact</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <main class="relative flex-1 flex items-center px-7 md:px-12">
         <div class="grid grid-cols-1 items-center gap-12 w-full py-8">
-            <!-- Text Content -->
             <div class="text-center">
-                <!-- --- KEY CHANGE 2: Reduced font size from 8xl to 7xl and added font-anton class --- -->
            <h1 class="font-anton text-5xl md:text-7xl lg:text-7xl font-extrabold text-[#f5f5f4] uppercase tracking-wide">
 <span class="relative inline-block px-2 py-2 text-white">
   The Autopsy
@@ -220,7 +206,6 @@ Told with clarity, precision, and a touch of dark humor.
         </div>
     </main>
 </div>
-<!-- Brutalist Section -->
 <section id="stack-brutalist" class="bg-black text-white py-20 sm:py-32 px-8 md:px-12">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -234,7 +219,6 @@ Told with clarity, precision, and a touch of dark humor.
                 </p>
             </div>
 
-            <!-- --- KEY CHANGE 3: Reorganized this column for better flow and alignment --- -->
             <div class="w-full flex flex-col space-y-8">
                 <div class="text-left">
                     <h3 class="text-3xl md:text-4xl text-[#fffdd0] uppercase">
@@ -246,22 +230,36 @@ Told with clarity, precision, and a touch of dark humor.
                     </p>
                 </div>
                 
-                <div class="flex  text-black flex-col sm:flex-row items-center gap-6 p-6 bg-white/5 rounded-2xl rounded-2xl border border-zinc-700/50 bg-[#1D1D1F]/90">
-                    <p class="text-base text-orange-50 leading-relaxed max-w-xs flex-shrink-2 text-left lg:text-left tracking-normal">
-                        The first report is imminent.<br>
-                        <span class="block mt-2">Drop your email below to get it the moment it's released.</span>
+                <div id="form-container" class="flex text-black flex-col gap-6 p-6 bg-white/5 rounded-2xl border border-zinc-700/50 bg-[#1D1D1F]/90">
+                    <p class="text-base text-orange-50 leading-relaxed text-left tracking-normal">
+                        The first report is imminent. Drop your email below to get it the moment it's released.
                     </p>
-                    <div id="waitforit-embed" data-project-id="a5829cf6-e879-4c0b-9a43-790120d55c9b" class="max-w-xs"></div>
+                    <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input 
+                                type="email" 
+                                name="email" 
+                                required 
+                                placeholder="your.email@address.com" 
+                                class="flex-grow w-full px-4 py-3 rounded-lg text-white bg-black/30 border border-zinc-600/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-[#0000fe] transition-all duration-300"
+                                aria-label="Email Address"
+                            >
+                            <button 
+                                type="submit" 
+                                class="button-primary font-bold text-base rounded-lg px-6 py-3.5 whitespace-nowrap"
+                            >
+                                Get Access
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Reports Section -->
 <section id="reports" class="bg-black text-white py-11 sm:py-11 sm:pb-32 px-8 md:px-12">
     <div class="max-w-7xl mx-auto">
-        <!-- --- KEY CHANGE 4: Increased bottom margin for better section spacing --- -->
         <div class="text-left mb-11">
             <h2 class="text-5xl md:text-6xl text-[#fffdd0] uppercase tracking-wider">
                 The Reports
@@ -271,16 +269,14 @@ Told with clarity, precision, and a touch of dark humor.
             </p>
         </div>
 
-        <!-- Grid for Reports -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             
-            <!-- Report 1 -->
             <div class="group">
                 <div class="overflow-hidden mb-5 rounded-lg">
-<img 
-  class="w-full h-auto object-cover transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" 
-  src="https://res.cloudinary.com/dunufio1l/image/upload/v1756318201/image_12_lnaigt.webp" 
-  alt="Report 1 Image">
+                    <img 
+                        class="w-full h-auto object-cover transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" 
+                        src="https://res.cloudinary.com/dunufio1l/image/upload/v1756318201/image_12_lnaigt.webp" 
+                        alt="Report 1 Image">
                 </div>
                 <div>
                     <h3 class="text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-[#fffdd0] leading-tight">How Cloudflare Stops DDoS in the Terabits <span class="text-gray-400 tracking-normal">(UPCOMING)</span></h3>
@@ -294,10 +290,8 @@ Told with clarity, precision, and a touch of dark humor.
     </div>
 </section>
 
-<!-- Footer Section -->
 <footer class="bg-black border-t rounded-2xl border-gray-800 py-8 px-8 md:px-12">
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
-    <!-- --- KEY CHANGE 5: Increased font size for better legibility in the footer --- -->
     <p class="text-base text-gray-400 mb-4 sm:mb-0 tracking-normal">
       &copy; <span id="year"></span> ringcero. All Rights Reserved.
     </p>
@@ -324,7 +318,6 @@ Told with clarity, precision, and a touch of dark humor.
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileMenuLinks = mobileMenu.querySelectorAll('a');
@@ -339,9 +332,59 @@ Told with clarity, precision, and a touch of dark humor.
     });
   });
 
+  // --- AJAX FORM SUBMISSION SCRIPT ---
+  const waitlistForm = document.getElementById('waitlist-form');
+  const formContainer = document.getElementById('form-container');
+
+  // Listen for the form's submit event
+  waitlistForm.addEventListener('submit', async (e) => {
+    // 1. Prevent the default form submission (which causes a redirect)
+    e.preventDefault(); 
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const action = form.action; // Get the action URL from the form's HTML
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    // 2. Give the user visual feedback that something is happening
+    submitButton.textContent = 'Submitting...';
+    submitButton.disabled = true;
+
+    try {
+        // 3. Send the form data to Formspark using the modern 'fetch' API
+        const response = await fetch(action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                // This header tells Formspark to expect an AJAX request and respond with JSON
+                'Accept': 'application/json'
+            }
+        });
+
+        // 4. Check if Formspark processed the submission successfully
+        if (response.ok) {
+            // If successful, replace the entire form with a thank you message
+            formContainer.innerHTML = `
+                <p class="text-lg text-center text-lime-300 leading-relaxed tracking-normal">
+                    Thanks for joining! We'll be in touch soon.
+                </p>
+            `;
+        } else {
+            // If Formspark returned an error (e.g., server issue), throw an error
+            throw new Error('Form submission failed.');
+        }
+    } catch (error) {
+        // 5. If there was a network error or the submission failed, show an error message
+        formContainer.innerHTML = `
+            <p class="text-lg text-center text-red-400 leading-relaxed tracking-normal">
+                Oops! Something went wrong. Please try again or contact us directly.
+            </p>
+        `;
+        console.error('Submission error:', error);
+    }
+  });
+
 </script>
 
-<!-- Waitlist Script -->
-<script src="https://www.waitforit.me/waitlistV3.bundle.js" async></script>
 </body>
 </html>
