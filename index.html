@@ -144,6 +144,22 @@ span.relative::before {
   border-radius: 0px; 
 }
 
+/* MODIFIED: Added styles for smooth hiding transition */
+#turnstile-section {
+    transition: opacity 0.5s ease, max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+    max-height: 200px; /* Set a max-height larger than the element's content */
+    overflow: hidden;
+}
+
+.section-hiding {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 </style>
   </head>
 <body>
@@ -390,10 +406,10 @@ Told with clarity, precision, and a touch of dark humor.
                 </div>
             `;
             
-            // ADDED: Hide the Turnstile widget section on success
+            // MODIFIED: Smoothly hide the Turnstile widget section on success
             const turnstileSection = document.getElementById('turnstile-section');
             if (turnstileSection) {
-                turnstileSection.style.display = 'none';
+                turnstileSection.classList.add('section-hiding');
             }
 
         } else {
