@@ -7,6 +7,9 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dunufio1l/image/upload/v1756337299/icon2_maz2gt.png">
 
+<!-- ADDED: Cloudflare Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 
@@ -251,6 +254,8 @@ Told with clarity, precision, and a touch of dark humor.
                                 Get Access
                             </button>
                         </div>
+                        <!-- ADDED: Cloudflare Turnstile Widget -->
+                        <div class="cf-turnstile mt-4" data-sitekey="YOUR_SITE_KEY_HERE"></div>
                     </form>
                 </div>
             </div>
@@ -335,9 +340,6 @@ Told with clarity, precision, and a touch of dark humor.
   // --- AJAX FORM SUBMISSION SCRIPT ---
   const waitlistForm = document.getElementById('waitlist-form');
   
-  // We no longer need the formContainer for the success message
-  // const formContainer = document.getElementById('form-container');
-
   waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault(); 
 
@@ -345,9 +347,15 @@ Told with clarity, precision, and a touch of dark humor.
     const action = form.action;
     const submitButton = form.querySelector('button[type="submit"]');
     const emailInput = form.querySelector('input[name="email"]');
+    
+    // MODIFIED: Get Turnstile response token from the form
+    const formData = new FormData(form);
+    const turnstileResponse = formData.get('cf-turnstile-response');
 
+    // MODIFIED: Create the payload including the Turnstile response
     const payload = {
         email: emailInput.value,
+        "cf-turnstile-response": turnstileResponse
     };
 
     submitButton.textContent = 'Submitting...';
@@ -364,8 +372,6 @@ Told with clarity, precision, and a touch of dark humor.
         });
 
         if (response.ok) {
-            // **MODIFICATION**: Instead of replacing the container's content,
-            // we now replace the form's content. This leaves the sibling <p> tag untouched.
             waitlistForm.innerHTML = `
                 <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
                     <p class="text-base text-lime-200">Thanks, you're on the list!</p>
@@ -375,7 +381,6 @@ Told with clarity, precision, and a touch of dark humor.
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        // Also replace only the form's content on error
         waitlistForm.innerHTML = `
              <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
                 <p class="text-base text-red-200">Oops! Please try again.</p>
