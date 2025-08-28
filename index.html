@@ -219,9 +219,9 @@ Told with clarity, precision, and a touch of dark humor.
                 </p>
             </div>
 
-            <div class="w-full flex flex-col space-y-8">
+            <div class="w-full flex flex-col justify-between h-full">
                 <div class="text-left">
-                    <h3 class="text-3xl md:text-4xl text-[#fffdd0] uppercase">
+                    <h3 class="text-3xl md:text-4xl text-[#fffdd0] uppercase pt-2">
                         BE THE FIRST TO KNOW
                     </h3>
                     <p class="text-sm text-gray-400 mt-3 tracking-normal">
@@ -230,7 +230,7 @@ Told with clarity, precision, and a touch of dark humor.
                     </p>
                 </div>
                 
-                <div id="form-container" class="flex text-black flex-col gap-6 p-6 bg-white/5 rounded-2xl border border-zinc-700/50 bg-[#1D1D1F]/90">
+                <div id="form-container" class="flex text-black flex-col gap-6 p-6 bg-white/5 rounded-2xl border border-zinc-700/50 bg-[#1D1D1F]/90 mt-6">
                     <p class="text-base text-orange-50 leading-relaxed text-left tracking-normal">
                         The first report is imminent. Drop your email below to get it the moment it's released.
                     </p>
@@ -332,9 +332,11 @@ Told with clarity, precision, and a touch of dark humor.
     });
   });
 
-  // --- AJAX FORM SUBMISSION SCRIPT (FORMSPARK JSON ENDPOINT) ---
+  // --- AJAX FORM SUBMISSION SCRIPT ---
   const waitlistForm = document.getElementById('waitlist-form');
-  const formContainer = document.getElementById('form-container');
+  
+  // We no longer need the formContainer for the success message
+  // const formContainer = document.getElementById('form-container');
 
   waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault(); 
@@ -344,7 +346,6 @@ Told with clarity, precision, and a touch of dark humor.
     const submitButton = form.querySelector('button[type="submit"]');
     const emailInput = form.querySelector('input[name="email"]');
 
-    // Create a payload object with the form data
     const payload = {
         email: emailInput.value,
     };
@@ -355,29 +356,30 @@ Told with clarity, precision, and a touch of dark humor.
     try {
         const response = await fetch(action, {
             method: 'POST',
-            // Set headers as required by Formspark's AJAX documentation
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            // Convert the JavaScript object to a JSON string
             body: JSON.stringify(payload),
         });
 
         if (response.ok) {
-            formContainer.innerHTML = `
-                <p class="text-lg text-center text-lime-300 leading-relaxed tracking-normal">
-                    Thanks for joining! We'll be in touch soon.
-                </p>
+            // **MODIFICATION**: Instead of replacing the container's content,
+            // we now replace the form's content. This leaves the sibling <p> tag untouched.
+            waitlistForm.innerHTML = `
+                <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
+                    <p class="text-base text-lime-200">Thanks, you're on the list!</p>
+                </div>
             `;
         } else {
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        formContainer.innerHTML = `
-            <p class="text-lg text-center text-red-400 leading-relaxed tracking-normal">
-                Oops! Something went wrong. Please try again or contact us directly.
-            </p>
+        // Also replace only the form's content on error
+        waitlistForm.innerHTML = `
+             <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
+                <p class="text-base text-red-200">Oops! Please try again.</p>
+            </div>
         `;
         console.error('Submission error:', error);
     }
