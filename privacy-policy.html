@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ringcero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dunufio1l/image/upload/v1756337299/icon2_maz2gt.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #E2E8F0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .font-anton { font-family: 'Anton', sans-serif; }
+        .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
+
+        /* Custom Styles for Policy Content */
+        .policy-content h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.25rem; /* 20px */
+            color: #FFF7ED;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+        .policy-content p {
+            font-size: 1rem; /* 16px */
+            color: #dde0e3ff; /* Softer gray for readability */
+            line-height: 1.75;
+        }
+        .policy-content .highlight-term {
+            font-family: 'Roboto Mono', monospace;
+            color: #E2E8F0;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
+        .policy-content a {
+            color: #FFFDD0;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 253, 208, 0.4);
+            transition: all 0.2s ease-in-out;
+        }
+        .policy-content a:hover {
+            background-color: #FFFDD0;
+            color: #0A0A0A;
+            border-bottom-color: #FFFDD0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 px-6 md:px-12 py-4 bg-black/50 border-b border-white/10 backdrop-blur-lg">
+      <nav class="flex justify-between items-center max-w-7xl mx-auto">
+          <a href="/" class="flex items-center space-x-3" aria-label="Back to homepage">
+              <span class="font-anton font-bold text-2xl text-[#FFFDD0]">ringcero</span>
+          </a>
+          <a href="/#contact" class="hidden md:inline-block font-roboto-mono text-sm text-lime-100 rounded-full px-5 py-2 transition-colors duration-300 hover:bg-white/10" style="border: 1px solid rgba(245, 245, 255, 0.2);">
+              Contact
+          </a>
+      </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="py-20 sm:py-28 px-6 md:px-12">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Page Header -->
+      <div class="text-left mb-16">
+        <h1 class="font-anton text-4xl md:text-5xl text-white uppercase tracking-wider">
+            Privacy Specification
+        </h1>
+        <p class="mt-4 text-sm text-gray-500 font-roboto-mono tracking-normal uppercase">Version 1.0 // Last Revised: 28 Aug 2025</p>
+      </div>
+
+      <!-- Policy Sections -->
+      <div class="policy-content space-y-10">
+        <section>
+            <h2>1.0 Data Collection</h2>
+            <p>
+              We collect information you voluntarily provide. The only personally identifiable information we actively collect is your <span class="highlight-term">email address</span> when you subscribe to our report notifications. Our forms are protected by <span class="highlight-term">Cloudflare Turnstile</span>, which may process technical data for spam mitigation as per their own policies.
+            </p>
+        </section>
+
+        <section>
+            <h2>2.0 Data Utilization</h2>
+            <p>
+              Your email address is used exclusively for operational purposes: to deliver notifications when new reports are released, and to respond directly to inquiries you send to our contact address. Your data will not be sold, leased, or distributed.
+            </p>
+        </section>
+
+        <section>
+            <h2>3.0 Security & Third-Party Protocols</h2>
+            <p>
+              We employ secure, reputable third-party services for form submissions. While we prioritize data integrity, no method of digital transmission is infallible. We accept no liability for third-party data breaches.
+            </p>
+        </section>
+
+        <section>
+            <h2>4.0 User Autonomy & Opt-Out</h2>
+            <p>
+              You retain full control over your data. Every notification email we dispatch contains a functional <span class="highlight-term">"unsubscribe"</span> link. Activating this link will permanently purge your email address from our active mailing list.
+            </p>
+        </section>
+
+        <section>
+            <h2>5.0 Inquiries</h2>
+            <p>
+              For questions or clarifications regarding this specification, contact our primary channel: <a href="mailto:contact@ringcero.com">contact@ringcero.com</a>.
+            </p>
+        </section>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="bg-black border-t border-gray-800/50 py-8 px-6 md:px-12 mt-20">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-y-4">
+      <div class="flex flex-col sm:flex-row items-center gap-x-6 gap-y-2 text-sm text-gray-500">
+          <p class="tracking-normal">
+            &copy; <span id="year"></span> ringcero. All Rights Reserved.
+          </p>
+          <a href="/privacy-policy.html" class="hover:text-[#fffdd0] transition-colors">Privacy Policy</a>
+      </div>
+      <div class="flex items-center space-x-5">
+          <a href="https://x.com/ringcero" target="_blank" class="text-gray-500 hover:text-[#fffdd0] transition-colors" aria-label="X social media">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+          </a>
+          <a href="https://www.youtube.com/@ringcero" target="_blank" class="text-gray-500 hover:text-[#fffdd0] transition-colors" aria-label="YouTube channel">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.506 2.506 0 0 1-1.768 1.768C18.256 19 12 19 12 19s-6.255 0-7.814-.418a2.506 2.506 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.506 2.506 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.255 0 7.812.418ZM15.197 12 10 14.732V9.268L15.197 12Z" clip-rule="evenodd"></path></svg>
+          </a>
+          <a href="mailto:contact@ringcero.com" class="text-gray-500 hover:text-[#fffdd0] transition-colors" aria-label="Contact via email">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
