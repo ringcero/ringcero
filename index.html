@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dunufio1l/image/upload/v1756337299/icon2_maz2gt.png">
 
-<!-- MODIFIED: Cloudflare Turnstile Script with onload callback -->
+<!-- Cloudflare Turnstile Script with onload callback -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
@@ -50,6 +50,14 @@
     .button-primary:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 30px rgba(179, 185, 255, 0.4);
+    }
+
+    .button-primary:disabled {
+        background-color: #33337a;
+        color: #a0a090;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
     }
 
     .stack-card {
@@ -143,19 +151,15 @@ span.relative::before {
   border-radius: 0px; 
 }
 
-/* MODIFIED: Added styles for smooth hiding transition */
 #turnstile-section {
     transition: opacity 0.5s ease, max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
-    max-height: 180px; /* Set a max-height larger than the element's content */
+    max-height: 180px; 
     overflow: hidden;
 }
 
-/* --- MODIFICATION START --- */
-/* Reserve space for the widget to prevent layout shift */
 #turnstile-widget-container {
-    min-height: 75px; /* Standard height for the Turnstile widget */
+    min-height: 75px; 
 }
-/* --- MODIFICATION END --- */
 
 .section-hiding {
     opacity: 0;
@@ -279,6 +283,7 @@ Told with clarity, precision, and a touch of dark humor.
                             >
                             <button 
                                 type="submit" 
+                                id="submit-button"
                                 class="button-primary font-bold text-base rounded-lg px-6 py-3.5 whitespace-nowrap"
                             >
                                 Get Access
@@ -298,11 +303,8 @@ Told with clarity, precision, and a touch of dark humor.
 <section id="turnstile-section" class="bg-black  px-8 md:px-12 ">
     <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-start">
-            <!-- Left column is empty -->
             <div></div>
-            <!-- Right column contains the widget -->
             <div>
-                <!-- MODIFIED: Container is now empty. Turnstile will be rendered here by JavaScript -->
                 <div id="turnstile-widget-container"></div>
             </div>
         </div>
@@ -373,18 +375,23 @@ Told with clarity, precision, and a touch of dark humor.
         mobileMenu.classList.add('hidden');
     });
   });
+</script>
 
-  // --- AJAX FORM SUBMISSION SCRIPT ---
+<!-- --- MODIFICATION START: REVISED FORM AND TURNSTILE LOGIC --- -->
+<script>
+  // State variables to manage Turnstile's status
+  let isTurnstileVerified = false;
+  let isTurnstileRendering = false;
+
   const waitlistForm = document.getElementById('waitlist-form');
-  
-  waitlistForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); 
+  const submitButton = document.getElementById('submit-button');
+  const emailInput = document.querySelector('input[name="email"]');
 
-    const form = e.target;
-    const action = form.action;
-    const submitButton = form.querySelector('button[type="submit"]');
-    const emailInput = form.querySelector('input[name="email"]');
-    
+  /**
+   * This function handles the actual AJAX submission of the form.
+   */
+  async function handleFormSubmission() {
+    const action = waitlistForm.action;
     const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
     const turnstileResponse = turnstileInput ? turnstileInput.value : null;
 
@@ -407,61 +414,90 @@ Told with clarity, precision, and a touch of dark humor.
         });
 
         if (response.ok) {
-            // Replace the form's content with the success message
-            form.innerHTML = `
+            waitlistForm.innerHTML = `
                 <div class="text-center w-full bg-lime-900/50 border border-lime-700 rounded-lg py-3">
                     <p class="text-base text-lime-200">Thanks, you're on the list!</p>
                 </div>
             `;
-            
-            // MODIFIED: Smoothly hide the Turnstile widget section on success
-            const turnstileSection = document.getElementById('turnstile-widget-container');
+            const turnstileSection = document.getElementById('turnstile-section');
             if (turnstileSection) {
                 turnstileSection.classList.add('section-hiding');
             }
-
         } else {
             throw new Error('Form submission failed.');
         }
     } catch (error) {
-        // Replace the form's content with the error message
-        form.innerHTML = `
+        waitlistForm.innerHTML = `
              <div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3">
                 <p class="text-base text-red-200">Oops! Please try again.</p>
             </div>
         `;
         console.error('Submission error:', error);
     }
-  });
-</script>
+  }
 
-<!-- SCRIPT TO RENDER TURNSTILE ON EVENT -->
-<script>
-  let turnstileRendered = false;
-
-  function renderTurnstile() {
-    if (turnstileRendered) {
+  /**
+   * Renders the Turnstile widget and locks the form while it's verifying.
+   * @param {function} [onSuccessCallback] - Optional function to run after successful verification.
+   */
+  function renderTurnstile(onSuccessCallback) {
+    if (isTurnstileRendering) {
       return;
     }
+    isTurnstileRendering = true;
     
     const container = document.getElementById('turnstile-widget-container');
     if (container) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Verifying...';
+      
       turnstile.render(container, {
         sitekey: '0x4AAAAAABvRbXQF4cQb7fVj', // Replace with your actual sitekey
         theme: 'dark',
-        size: 'flexible'
+        size: 'flexible',
+        callback: function(token) {
+          isTurnstileVerified = true;
+          submitButton.disabled = false;
+          submitButton.textContent = 'Get Access';
+          // If a callback was provided (e.g., the form submission), run it now.
+          if (typeof onSuccessCallback === 'function') {
+            onSuccessCallback();
+          }
+        },
+        'error-callback': function() {
+          isTurnstileVerified = false;
+          submitButton.disabled = true;
+          submitButton.textContent = 'Verification Failed';
+        }
       });
-      turnstileRendered = true;
     }
   }
 
+  // This is the main function that runs when the Turnstile script is ready.
   function onloadTurnstileCallback() {
-    const emailInput = document.querySelector('input[name="email"]');
+    // Proactively render Turnstile when the user focuses on the email field.
     if (emailInput) {
-      emailInput.addEventListener('focus', renderTurnstile, { once: true });
+      emailInput.addEventListener('focus', () => renderTurnstile(null), { once: true });
+    }
+
+    // Add the primary submit listener to the form.
+    if (waitlistForm) {
+      waitlistForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Always prevent the default submission behavior.
+        
+        // If already verified, submit the form directly.
+        if (isTurnstileVerified) {
+          handleFormSubmission();
+        } else {
+          // If not verified, render Turnstile. The `handleFormSubmission` function
+          // is passed as a callback to be executed only upon successful verification.
+          renderTurnstile(handleFormSubmission);
+        }
+      });
     }
   }
 </script>
+<!-- --- MODIFICATION END --- -->
 
 </body>
 </html>
