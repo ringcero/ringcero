@@ -148,7 +148,7 @@ span.relative::before {
   background-color: #FFFFFF;
   transform: rotate(-1deg);
   z-index: -1; /* behind the text */
-  border-radius: 0px; 
+  border-radius: 11px; 
 }
 
 #turnstile-section {
@@ -176,11 +176,19 @@ span.relative::before {
   <div class="main-container bg-black flex flex-col  rounded-b-2xl border-b border-white/10  relative overflow-hidden">
     
     <div class="">
-       <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 rounded-b-2xl">
-    <source src="https://res.cloudinary.com/dunufio1l/video/upload/v1756612496/AdobeStock_638077140_1_orutrw_1_1_1_ou43nr.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="absolute inset-0 bg-[#680df8]/30 z-0" style="backdrop-filter: blur(2px);"></div>
+     <!--img 
+  src="https://res.cloudinary.com/dunufio1l/image/upload/v1757354691/image_20_aidpu9.webp" 
+  alt="Background image"
+  class="absolute inset-0 w-full h-full object-cover z-0 rounded-b-2xl"
+/--> <div class="absolute inset-0 overflow-hidden rounded-b-2xl z-0">
+  <img 
+    src="image2.png" 
+    alt="Background image"
+    class="w-full h-full object-cover  scale-100 transform origin-top-left"
+/>
+</div>
+
+  <div class="absolute inset-0 bg-[#240089]/50 z-0" style="backdrop-filter: blur(0px);"></div>
 
     </div>
     <div class="absolute top-0 left-0 w-full h-full bg-black/90 z-[-1]"></div>
@@ -212,18 +220,17 @@ span.relative::before {
     <main class="relative flex-1 flex items-center px-7 md:px-12">
         <div class="grid grid-cols-1 items-center gap-12 w-full py-8">
             <div class="text-center">
-           <h1 class="font-anton text-5xl md:text-7xl lg:text-7xl font-extrabold text-[#1a1a1a] uppercase tracking-wide">
-<span class="relative inline-block px-2 py-2 ">
-    
-  THE TECHNICAL
+            <h1 class="font-anton  text-6xl md:text-7xl rounded-lg lg:text-8xl font-extrabold text-[#1a1a1a] uppercase ">
+<span class="relative inline-block px-3 pb-1 pt-1.5 rounded-lg">THE cloud, 
 </span>
-                    <br >
-                    <span class="inline-block bg-[#0000fe] text-[#FFFFFF] px-4 py-2  ">TEARDOWN</span>
+                    <br>
+                    <span class="inline-block bg-[#0000fe] text-[#FFFFFF] rounded-xl px-4 pt-1.5 pb-1.5 -mt-1.5  ">simplified</span>
                
                 </h1>
                 <!-- MODIFICATION: Hero sub-headline reframed for a leadership audience -->
                 <p class="mt-6 max-w-xl text-base md:text-lg  leading-relaxed mx-auto text-[#fcfcfc]">
-                   Strategic analysis of the technology that powers market leaders. Architectural bets, engineering trade-offs, and business impact behind critical systems, dissected.
+            Breaking down the systems that run the cloud. From case studies to deep technical analyses.
+
                     
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
