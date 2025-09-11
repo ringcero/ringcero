@@ -28,6 +28,12 @@
     .pill-glow {
         box-shadow: 0 0 30px rgba(190, 242, 100, 0.15);
     }
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(253, 253, 253, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(253, 253, 253, 0.1) 1px, transparent 1px);
+      background-size: 150px 150px;
+    }
     
     .button-ghost {
         background-color: rgba(193, 190, 255, 0.05);
@@ -327,13 +333,18 @@ span.relative::before {
 </section>
 </div>
 
-<section id="reports" class="-mt-3 bg-black  text-white py-11 sm:py-11 sm:pb-8 px-8 md:px-12">
-    <div class="max-w-7xl mx-auto mt-11">
+<section id="reports" class="-mt-3 grid-bg relative rounded-t-2xl bg-black text-white py-14 -mb-1 sm:py-11 sm:pb-20 px-8 md:px-12">
+    <!-- Overlay background -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-15 rounded-t-2xl" 
+         style="background-image: url('https://res.cloudinary.com/dunufio1l/image/upload/v1757586129/a5432dab-c6b7-4f58-8bf1-fc244511e311_vqbiit.jpg');">
+    </div>
+
+    <!-- Content above overlay -->
+    <div class="relative max-w-7xl mx-auto mt-11">
         <div class="text-left mb-11">
-            <h2 class="text-5xl md:text-6xl text-orange-100 uppercase ">
+            <h2 class="text-5xl md:text-6xl text-orange-100 uppercase">
                 The Breakdowns
             </h2>
-             <!-- MODIFICATION: Section description reframed around strategy and trade-offs -->
             <p class="text-lg text-[#f3eee5] mt-4 max-w-2xl tracking-normal">
                 A library of strategic analyses dissecting the technology and trade-offs behind mission-critical systems.
             </p>
@@ -345,12 +356,13 @@ span.relative::before {
                 <div class="overflow-hidden mb-5 rounded-lg">
                     <img 
                         class="w-full h-auto object-cover transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" 
-                        src="https://res.cloudinary.com/dunufio1l/image/upload/v1756318201/image_12_lnaigt.webp" 
+                        src="https://res.cloudinary.com/dunufio1l/image/upload/v1757586803/image_12_lnaigt-removebg_ljmxue.webp" 
                         alt="Report 1 Image">
                 </div>
                 <div>
-                    <h3 class="text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">How Cloudflare Stops DDoS in the Terabits <span class="text-gray-400 tracking-normal">(UPCOMING)</span></h3>
-                    <!-- MODIFICATION: Breakdown description now highlights business impact ("security moat") and architectural choices -->
+                    <h3 class="text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
+                        How Cloudflare Stops DDoS in the Terabits <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
+                    </h3>
                     <p class="text-base text-[#f3eee5] mt-4 leading-relaxed tracking-normal">
                         A strategic analysis of Cloudflare's multi-layered defense. We uncover the architectural choices, from custom hardware to eBPF, that create a multi-billion dollar security moat.
                     </p>
@@ -361,7 +373,8 @@ span.relative::before {
     </div>
 </section>
 
-  <footer class="relative border-t rounded-t-2xl border-gray-800 py-8 px-8 md:px-12 mt-11 font-anton bg-center bg-cover bg-[url('https://res.cloudinary.com/dunufio1l/image/upload/v1756618761/image_14_bqnx0q.webp')] md:bg-none md:bg-black">
+
+  <footer class="relative border-t rounded-t-2xl border-gray-800 py-8 px-8 md:px-12  font-anton bg-center bg-cover bg-[url('https://res.cloudinary.com/dunufio1l/image/upload/v1756618761/image_14_bqnx0q.webp')] md:bg-none md:bg-black">
   <!-- Overlay for mobile -->
   <div class="absolute inset-0 bg-black opacity-70 rounded-t-2xl md:hidden"></div>
   
