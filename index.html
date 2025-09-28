@@ -6,6 +6,8 @@
 <!-- MODIFICATION: Refined title for a more strategic positioning -->
 <title>ringcero - Strategic Analysis of Mission-Critical Tech</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 <link rel="icon" type="image/x-icon" href="zicons/icon2.png">
 <!-- Cloudflare Turnstile Script with onload callback -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
@@ -33,6 +35,7 @@
         linear-gradient(rgba(253, 253, 253, 0.1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(253, 253, 253, 0.1) 1px, transparent 1px);
       background-size: 150px 150px;
+      background-position: -30px 0px;
     }
     
     .button-ghost {
@@ -226,11 +229,11 @@ span.relative::before {
     <main class="relative flex-1 flex items-center px-7 md:px-12">
         <div class="grid grid-cols-1 items-center gap-12 w-full py-8">
             <div class="text-center">
-            <h1 class="font-anton  text-6xl md:text-7xl rounded-lg lg:text-8xl font-extrabold text-[#1a1a1a] uppercase ">
-<span class="relative inline-block px-3 pb-1 pt-1.5 rounded-lg">THE cloud, 
+            <h1 class="font-anton  text-6xl md:text-7xl rounded-lg lg:text-8xl font-extrabold text-[#1a1a1a] uppercase " >
+<span class="relative inline-block px-3 pb-1 pt-1.5 rounded-lg" data-aos="fade-left" data-aos-duration="700">THE cloud, 
 </span>
                     <br>
-                    <span class="inline-block bg-[#0000fe] text-[#FFFFFF] rounded-xl px-4 pt-1.5 pb-1.5 -mt-1.5  ">simplified</span>
+                    <span class="inline-block bg-[#0000fe] text-[#FFFFFF] rounded-xl px-4 pt-1.5 pb-1.5 -mt-1.5  " data-aos="fade-right" data-aos-duration="800">simplified</span>
                
                 </h1>
                 <!-- MODIFICATION: Hero sub-headline reframed for a leadership audience -->
@@ -333,9 +336,9 @@ span.relative::before {
 </section>
 </div>
 
-<section id="reports" class="-mt-3 grid-bg max-w-7xl mx-auto rounded-t-2xl border-t border-t-gray-500 relative  bg-black text-white py-14 -mb-3 sm:py-11 sm:pb-20 px-8 md:px-12">
+<section id="reports" class="-mt-3 grid-bg max-w-7xl mx-auto rounded-t-3xl border border-stone-700  relative  bg-black text-white py-14 -mb-3 sm:py-11 sm:pb-20 px-8 md:px-12">
     <!-- Overlay background -->
-    <div class="absolute inset-0 bg-cover bg-center rounded-t-2xl opacity-15 " 
+    <div class="absolute inset-0 bg-cover bg-center rounded-t-3xl opacity-15 " 
          style="background-image: url('zicons/a5432dab-c6b7-4f58-8bf1-fc244511e311_vqbiit-_1_.webp');">
     </div>
 
@@ -545,6 +548,11 @@ span.relative::before {
     }
   }
 </script>
-
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</body>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
