@@ -11,21 +11,28 @@
 <link rel="icon" type="image/x-icon" href="zicons/icon2.png">
 <!-- Cloudflare Turnstile Script with onload callback -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap');
-
+<style> 
+/* MODIFICATION: Replaced Inter and Roboto Mono with IBM Plex Sans */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('zfonts/FeatureFlatCond-Regular.a6231343.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
     html {
         scroll-behavior: smooth;
     }
 
-    body {
-        font-family: 'anton', 'sans-serif';
-        background-color: #050807;
-        color: #E2E8F0;
-    }
-    
+    /* MODIFICATION: Set IBM Plex Sans as the body font */
+  body {
+  font-family: 'MyCustomFont', serif;
+  background-color: #050807;
+  color: #E2E8F0;
+}
     .font-anton { font-family: 'Anton', sans-serif; }
-    .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
+    .font-plex-sans  { font-family: 'Instrument Serif', serif; } /* Helper class if needed */
 
     .pill-glow {
         box-shadow: 0 0 30px rgba(190, 242, 100, 0.15);
@@ -62,8 +69,8 @@
     }
 
     .button-primary:disabled {
-        background-color: #6868d9ff;
-        color: #e3e3d0ff;
+        background-color: #e5e5e5;
+        color: #000000;
         cursor: not-allowed;
         box-shadow: none;
         transform: none;
@@ -181,64 +188,70 @@ span.relative::before {
 
 </style>
   </head>
-<body class="bg-[#1a1a1a]">
-  <div class="main-container bg-black flex flex-col  rounded-b-2xl shadow-2xl border-white/10  relative overflow-hidden">
+<body class="bg-[#0f0f0f]">
+<div class="bg-[#1a1a1a]">
+  <div class="main-container bg-black flex flex-col  rounded-b-2xl shadow-2xl border-white/10  relative overflow-hidden max-w-7xl mx-auto  ">
     
     <div class="">
      <!--img 
   src="https://res.cloudinary.com/dunufio1l/image/upload/v1757354691/image_20_aidpu9.webp" 
   alt="Background image"
   class="absolute inset-0 w-full h-full object-cover z-0 rounded-b-2xl"
-/--> <div class="absolute inset-0 overflow-hidden rounded-b-2xl z-0">
+/--> <div class="absolute inset-0 overflow-hidden rounded-b-2xl z-0 ">
   <img 
-    src="zicons/header.png" 
+    src="zicons/a5432dab-c6b7-4f58-8bf1-fc244511e311_vqbiit-_1_.webp" 
     alt="Background image"
-    class="w-full h-full object-cover  scale-100 transform origin-top-left"
+    class="w-full h-full object-cover  scale-100 transform origin-top-left  "
 />
 </div>
 
-  <div class="absolute inset-0 bg-[#240089]/50 z-0" style="backdrop-filter: blur(0px);"></div>
+  <div class="absolute inset-0 bg-[#000000]/80 z-0 grid-bg " style="backdrop-filter: blur(0px);"></div>
 
     </div>
-    <div class="absolute top-0 left-0 w-full h-full bg-black/90 z-[-1]"></div>
+    <div class="absolute top-0 left-0 w-full h-full  z-[-1] "></div>
 
 
-    <header class="relative px-7 md:px-12 py-6">
-        <nav class="flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3">
-                <span class="font-bold text-3xl text-orange-100">ringcero</span>
-            </a>
+    <header class="fixed top-0 left-1/2 -translate-x-1/2 w-[100%] max-w-7xl px-7 md:px-12 py-3  z-10 backdrop-blur-md   rounded-b-3xl rounded-t-sm  ">
+  <nav class="flex justify-between items-center">
+    <a href="#" class="flex items-center space-x-3">
+      <span class="font-anton font-bold text-3xl text-orange-100">ringcero</span>
+    </a>
 
-            <div class="hidden md:flex items-center">
-                <a href="#contact" class="button-ghost backdrop-blur-md font-medium text-sm text-orange-50 rounded-full px-5 py-2">
-                    Contact 
-                </a>
-            </div>
+    <div class="hidden md:flex items-center">
+      <a href="#contact" class="button-ghost backdrop-blur-md font-medium text-sm text-orange-50 rounded-full px-5 py-2">
+        Contact
+      </a>
+    </div>
 
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#1a1a1a]/90 rounded-lg backdrop-blur-sm">
-            <a href="#contact" class="block py-3 px-5 text-base text-white text-right hover:bg-white/5 rounded-lg">Contact</a>
-        </div>
-    </header>
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </nav>
 
-    <main class="relative flex-1 flex items-center px-7 md:px-12">
-        <div class="grid grid-cols-1 items-center gap-12 w-full py-8">
-            <div class="text-center">
+  <div id="mobile-menu" class="hidden md:hidden mt-4 bg-[#1a1a1a]/90 rounded-lg backdrop-blur-sm">
+    <a href="#contact" class="block py-3 px-5 text-base text-white text-right hover:bg-white/5 rounded-lg">Contact</a>
+  </div>
+</header>
+
+
+    <main class="relative flex-1 flex items-center px-7 md:px-12 mt-20">
+        <div class="grid grid-cols-1 items-center gap-12 w-full py-8 ">
+            <div class="text-center ">
             <h1 class="font-anton  text-6xl md:text-7xl rounded-lg lg:text-8xl font-extrabold text-[#1a1a1a] uppercase " >
-<span class="relative inline-block px-3 pb-1 pt-1.5 rounded-lg" data-aos="fade-left" data-aos-duration="700">THE cloud, 
+<span class="relative inline-block px-3 pb-1 pt-1.5 rounded-lg" data-aos="fade-left" data-aos-duration="700">systems, 
 </span>
                     <br>
-                    <span class="inline-block bg-[#0000fe] text-[#FFFFFF] rounded-xl px-4 pt-1.5 pb-1.5 -mt-1.5  " data-aos="fade-right" data-aos-duration="800">simplified</span>
+                    <span class="inline-block bg-[#0000fe] text-[#FFFFFF] rounded-xl px-4 pt-1.5 pb-1.5 -mt-1.5  " data-aos="fade-right" data-aos-duration="800">distilled</span>
                
                 </h1>
                 <!-- MODIFICATION: Hero sub-headline reframed for a leadership audience -->
-                <p class="mt-6 max-w-xl text-base md:text-lg  leading-relaxed mx-auto text-[#fcfcfc]">
-            Breaking down the systems that run the cloud. From case studies to deep technical analyses.
+                <p class="mt-6 max-w-xl text-base md:text-2xl  leading-relaxed mx-auto text-[#fcfcfc]">
+            Breaking down the systems that run the AI cloud. From case studies to deep technical analyses.
 
                     
                 </p>
@@ -254,44 +267,45 @@ span.relative::before {
         </div>
     </main>
 </div>
-<section id="stack-brutalist" class="-mt-6 bg-[#0f0f0f] text-white pt-20 sm:pt-32 pb-2 md:pb-4 px-8 md:px-12">
+</div>
+<section id="stack-brutalist" class="-mt-6 bg-[#1a1a1a] text-white pt-20 sm:pt-32 pb-2 md:pb-4 px-8 md:px-12">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-16 lg:items-stretch">
             
             <div class="text-left text-[#f2f2f2] flex flex-col justify-between">
                 <div>
-                   <h2 class="text-5xl md:text-6xl lg:text-6xl uppercase mb-6 mt-6 bg-gradient-to-b from-gray-100 to-gray-400 text-transparent bg-clip-text">
+                   <h2 class="font-anton text-5xl md:text-6xl lg:text-6xl uppercase mb-6 mt-6 bg-gradient-to-b from-gray-100 to-gray-400 text-transparent bg-clip-text">
                         INSIDE<span class="block md:inline"> THE MACHINE</span>
                     </h2>
 
                     <!-- MODIFICATION: Paragraph 1 rephrased to emphasize strategy and competitive advantage -->
-                    <p class="text-lg text-[#efefef] leading-relaxed prose tracking-normal">
-                        Our briefings go beyond the code. We deconstruct the entire system—from architectural strategy to the specific tech stack—to reveal the critical decisions that create a competitive advantage.
+                    <p class="text-xl text-[#efefef] leading-relaxed prose tracking-normal">
+                        Our briefings go beyond the code. We deconstruct the entire system—from architectural strategy to the specific tech stack—to reveal the critical decisions that create a competitive advantage in an AI-centric world.
                     </p>
                 </div>
                 <!-- MODIFICATION: Paragraph 2 rephrased to focus on high-stakes decisions -->
-                <p class="text-lg text-[#efefef] leading-relaxed max-w-xl prose tracking-normal mt-8">
+                <p class="text-xl text-[#efefef] leading-relaxed max-w-xl prose tracking-normal mt-8">
                     No hype—just strategic insights and technical proof behind billion-dollar decisions. 
                 </p>
 
             </div>
 
-<div id="contact" class="w-full flex flex-col bg-[#ffffff] rounded-3xl p-6 scroll-mt-8">
+            <div id="contact" class="w-full flex flex-col bg-[#2d2d2d] rounded-3xl p-6 scroll-mt-8">
 
                 
                 <div class="text-left">
-                    <h3 class="text-3xl md:text-4xl text-[#0f0f0f] uppercase ">
+                    <h3 class="font-anton text-3xl md:text-4xl text-white uppercase ">
                         THE WEEKLY TEARDOWN
                     </h3>
-                    <p class="text-sm text-gray-700 mt-3 tracking-normal">
+                    <p class="text-sm text-neutral-400 mt-3 tracking-normal">
                         For inquiries, reach out directly to: 
-                        <a href="mailto:contact@ringcero.com" class="bg-[#FFFDD0] underline hover:text-black transition-colors">contact@ringcero.com</a>
+                        <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#c9c7a3] hover:bg-black transition-colors">contact@ringcero.com</a>
                     </p>
                 </div>
                 
-                <div id="form-container" class="flex text-black flex-col  rounded-3xl  border-zinc-700/50  mt-auto">
+                <div id="form-container" class="flex text-white flex-col rounded-3xl mt-auto">
                     <!-- MODIFICATION: CTA copy made to be more exclusive and value-driven for leaders -->
-                    <p class="text-base text-[#0f0f0f] leading-relaxed text-left tracking-normal mb-4 mt-2">
+                    <p class="text-base text-neutral-300 leading-relaxed text-left text-lg tracking-normal mb-4 mt-2">
                       Join the tech leaders, investors, and architects receiving our weekly strategy briefings in their inbox
                     </p>
                     <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
@@ -301,20 +315,20 @@ span.relative::before {
                                 name="email" 
                                 required 
                                 placeholder="your.email@address.com" 
-                                class="flex-grow w-full px-4 py-3 rounded-lg text-black bg-[#efefef] border-zinc-500/70 focus:outline-none focus:ring-1  focus:ring-offset-white focus:ring-[#ffffff]"
+                                class="flex-grow w-full px-4 py-3 rounded-lg text-white bg-[#3a3a3a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#2D2D2D] focus:ring-[#2D2D2D]"
                                 aria-label="Email Address"
                             >
                             <button 
                                 type="submit" 
                                 id="submit-button"
-                                class="button-primary font-bold text-base rounded-lg px-6 py-3.5 whitespace-nowrap"
+                                class="button-primary font-bold text-base rounded-lg px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors"
                             >
                                 Get Access
                             </button>
                         </div>
                     </form>
-                    <p class="text-xs text-zinc-700 mt-1.5">
-                        By submitting this form, you agree to our <a href="/privacy-policy" class="underline text-[#000000]">Privacy Policy</a>.
+                    <p class="text-xs text-neutral-500 mt-1.5">
+                        By submitting this form, you agree to our <a href="/privacy-policy" class="underline text-neutral-400 hover:text-white">Privacy Policy</a>.
                     </p>
                 </div>
             </div>
@@ -323,8 +337,8 @@ span.relative::before {
 </section>
 
 <!-- WIDGET SECTION -->
-<div class="bg-gradient-to-b from-[#0f0f0f] to-[#1a1a1a]">
-<section id="turnstile-section" class="bg-gradient-to-b from-[#0f0f0f] to-[#1a1a1a] pb-4 px-8 md:px-12 ">
+<div class="bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]  "> <!--rounded-b-2xl-->
+<section id="turnstile-section" class="bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f] pb-4 px-8 md:px-12 "> <!--rounded-b-2xl-->
     <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-2 lg:gap-16 items-start">
             <div></div>
@@ -336,21 +350,21 @@ span.relative::before {
 </section>
 </div>
 
-<section id="reports" class="-mt-3 grid-bg max-w-7xl mx-auto rounded-t-3xl border border-stone-700  relative  bg-black text-white py-14 -mb-3 sm:py-11 sm:pb-20 px-8 md:px-12">
+<section id="reports" class="-mt-3 mx-auto   relative  text-white py-14 -mb-3 sm:py-11 sm:pb-20 px-8 md:px-12">
     <!-- Overlay background -->
-    <div class="absolute inset-0 bg-cover bg-center rounded-t-3xl opacity-15 " 
+    <!--div class="absolute inset-0 bg-cover bg-center rounded-t-3xl opacity-15 " 
          style="background-image: url('zicons/a5432dab-c6b7-4f58-8bf1-fc244511e311_vqbiit-_1_.webp');">
-    </div>
+    </div-->
 
     <!-- Content above overlay -->
-    <div class="relative max-w-7xl mx-auto mt-11">
-       <div class="flex flex-col items-center text-center mb-11">
-          <h2 class="text-5xl md:text-6xl text-orange-100 uppercase">
+    <div class="relative max-w-7xl mx-auto mt-8">
+       <div class="flex flex-col items-start  mb-14">
+          <h2 class="font-anton text-5xl md:text-6xl text-[#f3f4ef] uppercase">
             The Breakdowns
           </h2>
-          <p class="text-lg text-[#f3eee5] mt-4 max-w-2xl mx-auto tracking-normal">
+          <p class="text-xl text-white mt-6 tracking-wide font-bold">
             A library of strategic analyses dissecting the technology and trade-offs 
-            behind mission-critical systems.
+            behind AI-first mission-critical systems.
           </p>
         </div>
 
@@ -358,18 +372,33 @@ span.relative::before {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             
             <div class="group">
-                <div class="overflow-hidden mb-5 rounded-lg">
+                <div class=" mb-5 rounded-lg">
                     <img 
-                        class="w-full h-auto object-cover transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" 
-                        src="zicons/image_12_lnaigt-removebg.webp" 
+                        class="w-full h-auto rounded-xl object-cover transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" 
+                        src="zicons/alibaba.png" 
                         alt="Report 1 Image">
                 </div>
                 <div>
-                    <h3 class="text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
-                        How Cloudflare Stops DDoS in the Terabits <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
+                    <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
+                        How Alibaba Cut Its GPUs by 83% <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
                     </h3>
-                    <p class="text-base text-[#f3eee5] mt-4 leading-relaxed tracking-normal">
-                        A strategic analysis of Cloudflare's multi-layered defense. We uncover the architectural choices, from custom hardware to eBPF, that create a multi-billion dollar security moat.
+                    <p class="text-base text-[#f3eee5] mt-4 text-lg leading-wide tracking-wide">
+Alibaba Cloud just announced Aegaeon, an inference scaling engine that allowed them to cut their GPU count by 82%. In this report, we'll dive deep into how it works.                   </p>
+                </div>
+            </div>
+              <div class="group">
+                <div class=" mb-5 rounded-lg">
+                    <img 
+                        class="w-full h-auto object-cover rounded-xl transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" 
+                        src="zicons/dbs.png" 
+                        alt="Report 1 Image">
+                </div>
+                <div>
+                    <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
+                        Why You're Scaling Your Database Wrong <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
+                    </h3>
+                    <p class="text-base text-[#f3eee5] text-lg mt-4 leading-wide tracking-wide">
+Scaling out has long been the norm — but is it still best for modern workloads? This report explores why scaling up may be the smarter choice.
                     </p>
                 </div>
             </div>
