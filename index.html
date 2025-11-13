@@ -208,16 +208,26 @@
                     <p class="text-base text-neutral-300 leading-relaxed text-left text-lg tracking-normal mb-4 mt-2">
 We study systems that deliver — or will, if their trade-offs hold up. Think less pitch deck, more field report — on the strategic insights and technical proof behind billion-dollar decisions.
                     </p>
-                    <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <input type="email" name="email" required="" placeholder="your.email@address.com" class="flex-grow w-full px-4 py-3 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
-                            <button type="submit" class="button-primary font-bold text-base rounded-xl px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors">Get Access</button>
-                        </div>
-                    </form>
-                    <p class="text-sm text-neutral-400 mt-3 tracking-normal">
-                        For inquiries:
-                        <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
-                    </p>
+                    
+                    <!-- ================================================================= -->
+                    <!-- START OF HTML CHANGE 1 of 2: Added a wrapper div for the form -->
+                    <!-- ================================================================= -->
+                    <div class="form-wrapper">
+                        <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input type="email" name="email" required="" placeholder="your.email@address.com" class="flex-grow w-full px-4 py-3 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
+                                <button type="submit" class="button-primary font-bold text-base rounded-xl px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors">Get Access</button>
+                            </div>
+                        </form>
+                        <p class="text-sm text-neutral-400 mt-3 tracking-normal">
+                            For inquiries:
+                            <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
+                        </p>
+                    </div>
+                    <!-- ================================================================= -->
+                    <!-- END OF HTML CHANGE 1 of 2 -->
+                    <!-- ================================================================= -->
+
                 </div>
                 <div id="turnstile-section" class="pt-3 turnstile-section">
                     <div id="turnstile-widget-container" class="turnstile-widget-container"></div>
@@ -256,16 +266,26 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
                         <p class="text-base text-neutral-300 leading-relaxed text-left text-lg tracking-normal mb-4">
     We study systems that deliver — or will, if their trade-offs hold up. Think less pitch deck, more field report.
                         </p>
-                        <form id="waitlist-form-mobile" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <input type="email" name="email" required placeholder="your.email@address.com" class="flex-grow w-full px-4 py-3 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
-                                <button type="submit" class="button-primary font-bold text-base rounded-xl px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors">Get Access</button>
-                            </div>
-                        </form>
-                         <p class="text-sm text-neutral-400 mt-3 tracking-normal">
-                            For inquiries: 
-                            <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
-                        </p>
+
+                        <!-- ================================================================= -->
+                        <!-- START OF HTML CHANGE 2 of 2: Added a wrapper div for the form -->
+                        <!-- ================================================================= -->
+                        <div class="form-wrapper">
+                            <form id="waitlist-form-mobile" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <input type="email" name="email" required placeholder="your.email@address.com" class="flex-grow w-full px-4 py-3 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
+                                    <button type="submit" class="button-primary font-bold text-base rounded-xl px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors">Get Access</button>
+                                </div>
+                            </form>
+                             <p class="text-sm text-neutral-400 mt-3 tracking-normal">
+                                For inquiries: 
+                                <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
+                            </p>
+                        </div>
+                        <!-- ================================================================= -->
+                        <!-- END OF HTML CHANGE 2 of 2 -->
+                        <!-- ================================================================= -->
+
                     </div>
                     <div id="turnstile-section-mobile" class="pt-3 turnstile-section">
                         <div id="turnstile-widget-container-mobile" class="turnstile-widget-container"></div>
@@ -341,10 +361,22 @@ Scaling out has long been the norm — but is it still best for modern workloads
           const formElement = document.getElementById(formId);
           if (!formElement) return;
 
-          const parentContainer = formElement.parentElement;
+          // =================================================================
+          // START OF JAVASCRIPT CHANGE
+          // =================================================================
+          
+          // Get the new wrapper div that contains the form and "inquiries" link. This will be our target for replacement.
+          const formWrapper = formElement.parentElement;
+          // Get the top-level container that holds the introductory text.
+          const topLevelContainer = formWrapper.parentElement;
+          
+          // =================================================================
+          // END OF JAVASCRIPT CHANGE
+          // =================================================================
+
           const submitButton = formElement.querySelector('button[type="submit"]');
           const emailInput = formElement.querySelector('input[name="email"]');
-          const turnstileSection = parentContainer.nextElementSibling;
+          const turnstileSection = topLevelContainer.nextElementSibling;
           const turnstileContainer = turnstileSection.querySelector('.turnstile-widget-container');
 
           let isTurnstileVerified = false;
@@ -352,20 +384,7 @@ Scaling out has long been the norm — but is it still best for modern workloads
 
           async function handleFormSubmission() {
               const action = formElement.action;
-              
-              // =================================================================
-              // START OF FIX
-              // =================================================================
-              
-              // THE BUG: The original code used `formElement.querySelector(...)`.
-              // THE FIX: Search the associated `turnstileSection` for the token, 
-              // because the token is rendered *outside* of the <form> element.
               const turnstileInput = turnstileSection.querySelector('[name="cf-turnstile-response"]');
-              
-              // =================================================================
-              // END OF FIX
-              // =================================================================
-
               const turnstileResponse = turnstileInput ? turnstileInput.value : null;
 
               const payload = {
@@ -384,13 +403,15 @@ Scaling out has long been the norm — but is it still best for modern workloads
                   });
 
                   if (response.ok) {
-                      parentContainer.innerHTML = `<div class="text-center w-full bg-[#2d2d2d] rounded-xl py-3"><p class="text-base text-[#ffffff]">Thanks, you're on the list!</p></div>`;
+                      // **THE FIX**: Replace the content of the `formWrapper` only, leaving the introductory text intact.
+                      formWrapper.innerHTML = `<div class="text-center w-full bg-[#2d2d2d] rounded-xl py-3"><p class="text-base text-[#ffffff]">Thanks, you're on the list!</p></div>`;
                       if (turnstileSection) turnstileSection.classList.add('section-hiding');
                   } else {
                       throw new Error('Form submission failed.');
                   }
               } catch (error) {
-                  parentContainer.innerHTML = `<div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3"><p class="text-base text-red-200">Oops! Please try again.</p></div>`;
+                  // **THE FIX**: Also target the `formWrapper` on error.
+                  formWrapper.innerHTML = `<div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3"><p class="text-base text-red-200">Oops! Please try again.</p></div>`;
                   console.error('Submission error:', error);
               }
           }
