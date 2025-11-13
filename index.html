@@ -351,36 +351,39 @@ Scaling out has long been the norm — but is it still best for modern workloads
           let isTurnstileRendering = false;
 
           async function handleFormSubmission() {
-              const action = formElement.action;
-              const turnstileInput = formElement.querySelector('[name="cf-turnstile-response"]');
-              const turnstileResponse = turnstileInput ? turnstileInput.value : null;
+          const action = formElement.action;
+          
+          // Create a FormData object directly from the form element.
+          // This will gather all input values, including the hidden 'cf-turnstile-response' token.
+          const formData = new FormData(formElement);
 
-              const payload = {
-                  email: emailInput.value,
-                  "cf-turnstile-response": turnstileResponse
-              };
+          submitButton.textContent = 'Submitting...';
+          submitButton.disabled = true;
 
-              submitButton.textContent = 'Submitting...';
-              submitButton.disabled = true;
+          try {
+              const response = await fetch(action, {
+                  method: 'POST',
+                  // NO 'Content-Type' header. The browser sets it automatically for FormData.
+                  body: formData,
+                  // We still want to accept a JSON response from the server.
+                  headers: { 'Accept': 'application/json' },
+              });
 
-              try {
-                  const response = await fetch(action, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                      body: JSON.stringify(payload),
-                  });
-
-                  if (response.ok) {
-                      parentContainer.innerHTML = `<div class="text-center w-full bg-[#2d2d2d] rounded-xl py-3"><p class="text-base text-[#ffffff]">Thanks, you're on the list!</p></div>`;
-                      if (turnstileSection) turnstileSection.classList.add('section-hiding');
-                  } else {
-                      throw new Error('Form submission failed.');
-                  }
-              } catch (error) {
-                  parentContainer.innerHTML = `<div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3"><p class="text-base text-red-200">Oops! Please try again.</p></div>`;
-                  console.error('Submission error:', error);
+              if (response.ok) {
+                  parentContainer.innerHTML = `<div class="text-center w-full bg-[#2d2d2d] rounded-xl py-3"><p class="text-base text-[#ffffff]">Thanks, you're on the list!</p></div>`;
+                  if (turnstileSection) turnstileSection.classList.add('section-hiding');
+              } else {
+                  // The server responded with an error
+                  throw new Error('Form submission failed.');
               }
+          } catch (error) {
+              parentContainer.innerHTML = `<div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3"><p class="text-base text-red-200">Oops! Please try again.</p></div>`;
+              console.error('Submission error:', error);
+              // Re-enable the button on failure so the user can retry
+              submitButton.textContent = 'Get Access';
+              submitButton.disabled = false;
           }
+      }
 
           function renderTurnstile(onSuccessCallback) {
               if (isTurnstileRendering) return;
