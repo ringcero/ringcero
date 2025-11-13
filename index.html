@@ -209,24 +209,24 @@
 We study systems that deliver — or will, if their trade-offs hold up. Think less pitch deck, more field report — on the strategic insights and technical proof behind billion-dollar decisions.
                     </p>
                     
-                    <!-- ================================================================= -->
-                    <!-- START OF HTML CHANGE 1 of 2: Added a wrapper div for the form -->
-                    <!-- ================================================================= -->
                     <div class="form-wrapper">
                         <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <input type="email" name="email" required="" placeholder="your.email@address.com" class="flex-grow w-full px-4 py-3 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
-                                <button type="submit" class="button-primary font-bold text-base rounded-xl px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors">Get Access</button>
+                            <div class="relative w-full">
+                                <input type="email" name="email" required="" placeholder="your.email@address.com" class="w-full px-4 py-3 pr-36 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
+                                <!-- ================================================================= -->
+                                <!-- START OF HTML CHANGE 1 of 2: Updated button classes -->
+                                <!-- ================================================================= -->
+                                <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white text-black font-bold text-base rounded-lg px-5 py-2 whitespace-nowrap transition-all duration-300 ease-in-out hover:bg-gray-100 hover:-translate-y-[calc(50%+2px)]">Get Access</button>
+                                <!-- ================================================================= -->
+                                <!-- END OF HTML CHANGE 1 of 2 -->
+                                <!-- ================================================================= -->
                             </div>
                         </form>
                         <p class="text-sm text-neutral-400 mt-3 tracking-normal">
                             For inquiries:
-                            <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
+                            <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black rounded-sm px-1 pb-0.5 hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
                         </p>
                     </div>
-                    <!-- ================================================================= -->
-                    <!-- END OF HTML CHANGE 1 of 2 -->
-                    <!-- ================================================================= -->
 
                 </div>
                 <div id="turnstile-section" class="pt-3 turnstile-section">
@@ -267,24 +267,24 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
     We study systems that deliver — or will, if their trade-offs hold up. Think less pitch deck, more field report.
                         </p>
 
-                        <!-- ================================================================= -->
-                        <!-- START OF HTML CHANGE 2 of 2: Added a wrapper div for the form -->
-                        <!-- ================================================================= -->
                         <div class="form-wrapper">
                             <form id="waitlist-form-mobile" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
-                                <div class="flex flex-col sm:flex-row gap-3">
-                                    <input type="email" name="email" required placeholder="your.email@address.com" class="flex-grow w-full px-4 py-3 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
-                                    <button type="submit" class="button-primary font-bold text-base rounded-xl px-6 py-3.5 whitespace-nowrap bg-white text-black transition-colors">Get Access</button>
+                                <div class="relative w-full">
+                                    <input type="email" name="email" required placeholder="your.email@address.com" class="w-full px-4 py-3 pr-36 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
+                                    <!-- ================================================================= -->
+                                    <!-- START OF HTML CHANGE 2 of 2: Updated button classes -->
+                                    <!-- ================================================================= -->
+                                    <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white text-black font-bold text-base rounded-lg px-5 py-2 whitespace-nowrap transition-all duration-300 ease-in-out hover:bg-gray-100 hover:-translate-y-[calc(50%+2px)]">Get Access</button>
+                                    <!-- ================================================================= -->
+                                    <!-- END OF HTML CHANGE 2 of 2 -->
+                                    <!-- ================================================================= -->
                                 </div>
                             </form>
                              <p class="text-sm text-neutral-400 mt-3 tracking-normal">
                                 For inquiries: 
-                                <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black underline hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
+                                <a href="mailto:contact@ringcero.com" class="bg-[#c9c7a3] text-black rounded-sm px-1 pb-0.5 hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
                             </p>
                         </div>
-                        <!-- ================================================================= -->
-                        <!-- END OF HTML CHANGE 2 of 2 -->
-                        <!-- ================================================================= -->
 
                     </div>
                     <div id="turnstile-section-mobile" class="pt-3 turnstile-section">
@@ -361,19 +361,9 @@ Scaling out has long been the norm — but is it still best for modern workloads
           const formElement = document.getElementById(formId);
           if (!formElement) return;
 
-          // =================================================================
-          // START OF JAVASCRIPT CHANGE
-          // =================================================================
-          
-          // Get the new wrapper div that contains the form and "inquiries" link. This will be our target for replacement.
           const formWrapper = formElement.parentElement;
-          // Get the top-level container that holds the introductory text.
           const topLevelContainer = formWrapper.parentElement;
           
-          // =================================================================
-          // END OF JAVASCRIPT CHANGE
-          // =================================================================
-
           const submitButton = formElement.querySelector('button[type="submit"]');
           const emailInput = formElement.querySelector('input[name="email"]');
           const turnstileSection = topLevelContainer.nextElementSibling;
@@ -403,14 +393,12 @@ Scaling out has long been the norm — but is it still best for modern workloads
                   });
 
                   if (response.ok) {
-                      // **THE FIX**: Replace the content of the `formWrapper` only, leaving the introductory text intact.
                       formWrapper.innerHTML = `<div class="text-center w-full bg-[#2d2d2d] rounded-xl py-3"><p class="text-base text-[#ffffff]">Thanks, you're on the list!</p></div>`;
                       if (turnstileSection) turnstileSection.classList.add('section-hiding');
                   } else {
                       throw new Error('Form submission failed.');
                   }
               } catch (error) {
-                  // **THE FIX**: Also target the `formWrapper` on error.
                   formWrapper.innerHTML = `<div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3"><p class="text-base text-red-200">Oops! Please try again.</p></div>`;
                   console.error('Submission error:', error);
               }
