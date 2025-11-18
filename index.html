@@ -251,7 +251,7 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
         <main class="w-full md:ml-80 lg:ml-96 flex-grow no-scrollbar">
             
             <!-- ====== START: MOBILE-ONLY HEADER SECTION ====== -->
-            <header class="md:hidden bg-black space-y-3 max-w-3xl mx-auto border-b border-b-stone-800">
+            <header class="md:hidden bg-black space-y-3 max-w-3xl mx-auto border-b border-b-stone-800 px-5">
                 <a href="#" class="flex items-center space-x-3   px-6 py-3.5 bg-[#000000]  fixed top-0 left-0 right-0 z-50">
                   <span class="font-anton font-bold text-3xl text-orange-100">ringcero</span>
                 </a>
@@ -305,7 +305,7 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
             <!-- ====== END: MOBILE-ONLY HEADER SECTION ====== -->
 
 
-            <section id="reports" class="relative text-white py-4 sm:py-12 px-6 md:px-12 scroll-mt-24 mt-4">
+            <section id="reports" class="relative text-white py-4 sm:py-12 px-11 md:px-20 scroll-mt-24 mt-4">
                 <div class="flex flex-col items-start mb-14">
                   <h2 class="font-anton text-5xl md:text-6xl text-[#f3f4ef] uppercase">
                     The Breakdowns
@@ -316,36 +316,54 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
                   </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 ">
                     
-                    <div class="group">
-                        <div class=" mb-5 rounded-lg">
-                            <img class="w-full h-auto rounded-xl object-cover transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" src="zicons/alibaba.png" alt="Report 1 Image">
+                    <!-- Report 1 -->
+                    <div class="group cursor-pointer">
+                        <!-- 
+                           1. Added 'relative overflow-hidden' to contain the overlay 
+                           2. Moved the transition/translate classes here so image+overlay move together 
+                        -->
+                        <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
+                            <!-- Image: Removed individual rounding/transition, kept sizing -->
+                            <img class="w-full h-auto object-cover" src="zicons/alibaba.png" alt="Report 1 Image">
+                            
+                            <!-- THE OVERLAY: Darkens image (bg-black/10) -> Becomes clear on hover (group-hover:bg-transparent) -->
+                            <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
                         </div>
+                        
                         <div>
                             <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
                                 How Alibaba Cut Its GPUs by 83% <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
                             </h3>
                             <p class="text-base text-[#f3eee5] mt-4 text-lg leading-wide tracking-wide">
-Alibaba Cloud just announced Aegaeon, an inference scaling engine that allowed them to cut their GPU count by 83%. In this report, we'll dive deep into how it works.                           </p>
+                                Alibaba Cloud just announced Aegaeon, an inference scaling engine that allowed them to cut their GPU count by 83%. In this report, we'll dive deep into how it works.
+                            </p>
                         </div>
                     </div>
-                      <div class="group">
-                        <div class=" mb-5 rounded-lg">
-                            <img class="w-full h-auto object-cover rounded-xl transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2" src="zicons/dbs.png" alt="Report 1 Image">
+
+                    <!-- Report 2 -->
+                    <div class="group cursor-pointer">
+                        <!-- Wrapper with animation & positioning -->
+                        <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
+                            <img class="w-full h-auto object-cover" src="zicons/dbs.png" alt="Report 2 Image">
+                            
+                            <!-- THE OVERLAY -->
+                            <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
                         </div>
+                        
                         <div>
                             <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
                                 Why You're Scaling Your Database Wrong <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
                             </h3>
                             <p class="text-base text-[#f3eee5] text-lg mt-4 leading-wide tracking-wide">
-Scaling out has long been the norm — but is it still best for modern workloads? This report explores why scaling up may be the smarter choice.
+                                Scaling out has long been the norm — but is it still best for modern workloads? This report explores why scaling up may be the smarter choice.
                             </p>
                         </div>
                     </div>
-                    </div>
+                    
+                </div>
             </section>
-            
             <footer class="p-6 md:px-12 py-6 text-xs text-gray-400 border-t border-line font-anton">
                 &copy; <span id="year"></span> ringcero // All Rights Reserved // 
                 <a href="/privacy-policy" class="hover:text-orange-100 transition-colors">Privacy_Policy</a>
