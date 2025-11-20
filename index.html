@@ -319,52 +319,52 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
                 <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 ">
                     
                     <!-- Report 1 -->
-                    <div class="group cursor-pointer">
-                        <!-- 
-                           1. Added 'relative overflow-hidden' to contain the overlay 
-                           2. Moved the transition/translate classes here so image+overlay move together 
-                        -->
-                        <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
-                            <!-- Image: Removed individual rounding/transition, kept sizing -->
-                            <img class="w-full h-auto object-cover" src="zicons/alibaba.png" alt="Report 1 Image">
+                    <div class="group cursor-pointer relative">
+
+                        <div class="absolute -inset-6 bg-[#1c1c1c] rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 scale-95 group-hover:scale-100"></div>
+
+                        <div class="relative">
+                            <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:">
+                                <img class="w-full h-auto object-cover" src="zicons/alibaba.png" alt="Report 1 Image">
+                                <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
+                            </div>
                             
-                            <!-- THE OVERLAY: Darkens image (bg-black/10) -> Becomes clear on hover (group-hover:bg-transparent) -->
-                            <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
-                                How Alibaba Cut Its GPUs by 83% <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
-                            </h3>
-                            <p class="text-base text-[#f3eee5] mt-4 text-lg leading-wide tracking-wide">
-                                Alibaba Cloud just announced Aegaeon, an inference scaling engine that allowed them to cut their GPU count by 83%. In this report, we'll dive deep into how it works.
-                            </p>
+                            <div>
+                                <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
+                                    How Alibaba Cut Its GPUs by 83% <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
+                                </h3>
+                                <p class="text-base text-[#f3eee5] mt-4 text-lg leading-wide tracking-wide">
+                                    Alibaba Cloud just announced Aegaeon, an inference scaling engine that allowed them to cut their GPU count by 83%. In this report, we'll dive deep into how it works.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Report 2 -->
-                    <div class="group cursor-pointer">
-                        <!-- Wrapper with animation & positioning -->
-                        <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
-                            <img class="w-full h-auto object-cover" src="zicons/dbs.png" alt="Report 2 Image">
+                     <div class="group cursor-pointer relative">
+
+                        <div class="absolute -inset-6 bg-[#1c1c1c] rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 scale-95 group-hover:scale-100"></div>
+
+                        <div class="relative">
+                            <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:">
+                                <img class="w-full h-auto object-cover" src="zicons/dbs.png" alt="Report 1 Image">
+                                <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
+                            </div>
                             
-                            <!-- THE OVERLAY -->
-                            <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
-                                Why You're Scaling Your Database Wrong <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
-                            </h3>
-                            <p class="text-base text-[#f3eee5] text-lg mt-4 leading-wide tracking-wide">
-                                Scaling out has long been the norm — but is it still best for modern workloads? This report explores why scaling up may be the smarter choice.
-                            </p>
+                            <div>
+                                <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
+                                    Why You're Scaling Your Database Wrong <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
+                                </h3>
+                                <p class="text-base text-[#f3eee5] text-lg mt-4 leading-wide tracking-wide">
+                                    Scaling out has long been the norm — but is it still best for modern workloads? This report explores why scaling up may be the smarter choice.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     
                 </div>
             </section>
-            <footer class="p-6 md:px-12 py-6 text-xs text-gray-400 border-t border-line font-anton">
+            <footer class="mt-6 p-6 md:px-12 py-6 text-xs text-gray-400 border-t border-line font-anton">
                 &copy; <span id="year"></span> ringcero // All Rights Reserved // 
                 <a href="/privacy-policy" class="hover:text-orange-100 transition-colors">Privacy_Policy</a>
             </footer>
