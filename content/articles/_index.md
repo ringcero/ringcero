@@ -1,5 +1,6 @@
 ---
 title: Articles
+next: first
 ---
 
 articles page
