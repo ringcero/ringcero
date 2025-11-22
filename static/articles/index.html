@@ -1,1 +1,27 @@
-<p>hello</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <!-- 1. Meta Refresh for immediate redirection -->
+    <meta http-equiv="refresh" content="0;url=https://www.google.com">
+    <style>
+        body { margin: 0; background-color: #111111; overflow: hidden; }
+        /* An infinite indeterminate animation in case connection is slow */
+        #progress {
+            height: 3px;
+            background-color: #ffffff;
+            width: 100%;
+            animation: load 1s infinite;
+        }
+        @keyframes load { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+    </style>
+    <script>
+        // 2. JS Redirect (Backup/Faster execution)
+        window.location.replace("https://ringcero.com");
+    </script>
+</head>
+<body>
+    <div id="progress"></div>
+</body>
+</html>
