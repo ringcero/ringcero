@@ -1,6 +1,6 @@
 ---
 title: first article
-type: articles
+type: docs
 prev: /
 ---
 
