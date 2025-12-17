@@ -129,6 +129,22 @@
             width: 100%;
         }
         .section-hiding { opacity: 0; max-height: 0; margin: 0; padding: 0; }
+
+        /* Mobile: fixed header that contains the site title (RINGCERO) */
+        .mobile-fixed-header {
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        }
+
+        /* Remove the mobile-only header effects on medium+ screens where sidebar is fixed */
+        @media (min-width: 768px) {
+            .mobile-fixed-header {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 
@@ -148,8 +164,8 @@
                 <div class="w-[3px] h-12 bg-[#333]"></div>
             </div>
 
-            <!-- Sidebar Header -->
-            <div class="px-6 py-3 bg-ind-surface/80 border-b border-ind-border relative overflow-hidden">
+                <!-- Sidebar Header -->
+            <div class="px-6 py-3 bg-ind-surface/80 border-b border-ind-border fixed top-0 left-0 w-full z-50 md:static md:w-auto mobile-fixed-header">
                 <!-- Top Left/Right decorative screws -->
                 <div class="absolute top-2 left-2 text-[#333] text-[8px]"><i class="fa-solid fa-plus"></i></div>
                 <div class="absolute top-2 right-2 text-[#333] text-[8px]"><i class="fa-solid fa-plus"></i></div>
@@ -164,7 +180,7 @@
             <!-- Sidebar Content -->
             <div class="flex-grow flex flex-col justify-between overflow-y-auto custom-scrollbar sidebar-texture relative">
                 <!-- Content Top -->
-                <div class="p-6 mt-6 md:mt-11">
+                <div class="p-6 mt-20 md:mt-11">
                     <div class="relative z-10">
                         <div class="mb-8 md:mb-10">
                             <div class="flex items-center gap-2 mb-3 opacity-60">
@@ -258,7 +274,7 @@
         <main class="w-full md:ml-80 lg:ml-96 flex-grow relative z-10">
             
             <!-- REPORTS SECTION -->
-            <section class="p-6 md:p-12 lg:p-20 pt-10 md:pt-20 min-h-screen">
+            <section class="p-6 md:p-12 lg:p-20 pt-16 md:pt-20 min-h-screen">
                 
                 <!-- Section Header -->
                 <div class="mb-8 relative">
