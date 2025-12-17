@@ -173,6 +173,33 @@
         }
         .fade-in-quick { animation: subtle-fade-in .28s ease-out forwards; }
 
+        /* Subtle, compact inline success */
+        .success-subtle {
+            border-left: 3px solid rgba(255,62,0,0.08);
+            background: rgba(255,62,0,0.02);
+            padding: 0.45rem 0.6rem;
+            border-radius: 6px;
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            font-size: 13px;
+            color: #d1d1d1;
+        }
+        .success-subtle .check {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background: rgba(255,62,0,0.08);
+            color: #ff3e00;
+            font-size: 12px;
+            line-height: 1;
+        }
+        .success-subtle .title { margin: 0; font-weight: 700; color: #eaeaea; font-size: 0.86rem; }
+        .success-subtle .msg { margin: 0; margin-top: 2px; font-size: 0.72rem; color: #9ca3af; }
+
         /* Mobile: fixed header that contains the site title (RINGCERO) */
         .mobile-fixed-header {
             backdrop-filter: blur(6px);
@@ -470,15 +497,11 @@
                   if (response.ok) {
                       // sleeker orange-accent success: compact, inline, and fades in
                       formElement.innerHTML = `
-                        <div role="status" aria-live="polite" class="fade-in-quick rounded-md p-3 bg-[#070707] border-l-4 border-[#ff3e00] flex items-center gap-3">
-                            <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#ff3e00] text-white shadow-md">
-                                    <i class="fa-solid fa-check"></i>
-                                </span>
-                            </div>
+                        <div role="status" aria-live="polite" class="fade-in-quick success-subtle">
+                            <div class="check" aria-hidden="true"><i class="fa-solid fa-check"></i></div>
                             <div class="text-left">
-                                <p class="text-sm font-bold text-white">You're on the list</p>
-                                <p class="text-xs text-gray-400 mt-1">Check your inbox for confirmation.</p>
+                                <p class="title">Sent</p>
+                                <p class="msg">Check your inbox for confirmation.</p>
                             </div>
                         </div>`;
                       if (turnstileSection) turnstileSection.classList.add('section-hiding');
