@@ -3,398 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ringcero - Strategic Analysis of Mission-Critical Tech</title>
+    <title>ringcero | SYSTEM_ROOT</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- FONTS: Teko (Headlines) and JetBrains Mono (Tech/Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;400;500;800&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/x-icon" href="/icon2.png">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
     
-    <style> 
-    /* --- THIS IS THE <style> BLOCK FROM YOUR ORIGINAL CODE --- */
-    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
-    @font-face {
-      font-family: 'MyCustomFont';
-      src: url('/fonts/FeatureFlatCond-Regular.a6231343.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-    }
-        html {
-            scroll-behavior: smooth;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        industrial: ['Teko', 'sans-serif'], 
+                        tech: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        ind: {
+                            bg: '#050505',
+                            panel: '#0a0a0a',
+                            surface: '#111111',
+                            border: '#333333',
+                            orange: '#ff3e00', // Safety Orange
+                            text: '#888888',
+                            white: '#e5e5e5',
+                        }
+                    },
+                    backgroundImage: {
+                        'hazard': 'repeating-linear-gradient(45deg, #141414, #141414 10px, #1a1a1a 10px, #1a1a1a 20px)',
+                        'carbon': 'linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 75%, transparent 75%, transparent)',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #a0a0a0;
+            overflow-x: hidden;
         }
 
-      body {
-      font-family: 'MyCustomFont', serif;
-      background-color: #0f0f0f; /* Changed from #050807 to match main content */
-      color: #E2E8F0;
-    }
-        .font-anton { font-family: 'Anton', sans-serif; }
-        .font-plex-sans  { font-family: 'Instrument Serif', serif; } /* Helper class if needed */
-
-        .pill-glow {
-            box-shadow: 0 0 30px rgba(190, 242, 100, 0.15);
-        }
-        .grid-bg {
-            background-image: 
-            linear-gradient(rgba(253, 253, 253, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(253, 253, 253, 0.1) 1px, transparent 1px);
-            background-size: 150px 150px;
-            background-position: -30px 0px;
-        }
-        
-        .button-ghost {
-            background-color: rgba(193, 190, 255, 0.05);
-            border: 1px solid rgba(245, 245, 255, 0.2);
-            transition: all 0.3s ease;
+        /* --- VISUAL FX --- */
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 9999;
+            opacity: 0.4;
         }
 
-        .button-ghost:hover {
-            background-color: rgba(250, 250, 255, 0.1);
-            border-color: rgba(176, 170, 255, 0.4);
+        .tech-grid {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+            background-size: 100px 100px;
         }
 
-        .button-primary {
-            background-color: #0000fe;
-            color: #f5f5d2ff;
-            box-shadow: 0 0 30px rgba(208, 209, 255, 0.25);
-            transition: all 0.3s ease;
-        }
-        
-        .button-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 30px rgba(179, 185, 255, 0.4);
-        }
-
-        .button-primary:disabled {
-            background-color: #e5e5e5;
-            color: #000000;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-
-        .stack-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.4) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .stack-card:hover {
-            border-color: rgba(190, 242, 100, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        /* --- SHAPES --- */
+        .cut-corner {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
         }
         
-        .feature-glow {
-            box-shadow: 0 0 50px rgba(190, 242, 100, 0.1);
+        .cut-corner-top-right {
+             clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
         }
 
-        .architecture-bg {
-            background: radial-gradient(ellipse 100% 60% at 50% 50%, rgba(12, 74, 50, 0.2), transparent);
+        /* Dual Chamfer for the Sidebar Card */
+        .chamfer-card {
+            clip-path: polygon(
+                12px 0, 100% 0, 
+                100% calc(100% - 12px), 
+                calc(100% - 12px) 100%, 
+                0 100%, 
+                0 12px
+            );
         }
 
-        .comparison-row {
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-            transition: all 0.3s ease;
+        /* Sidebar specific texture */
+        .sidebar-texture {
+            background-size: 10px 10px;
+            background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
         }
 
-        .comparison-row:hover {
-            background-color: rgba(15, 23, 42, 0.3);
+        /* --- IMAGES --- */
+        .hacker-img {
+            transition: all 0.4s ease;
+        }
+        .group:hover .hacker-img {
+            filter: grayscale(0%) brightness(1) contrast(1);
         }
 
-        .flow-arrow {
-            animation: pulse 2s infinite;
+        /* --- UTILS --- */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #050505; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #ff3e00; }
+        
+        ::selection { background: #ff3e00; color: #000; }
+        
+        .turnstile-section {
+            transition: all 0.5s ease;
+            max-height: 180px; 
+            overflow: hidden;
+            width: 100%;
         }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
-        .tech-badge {
-            background: linear-gradient(135deg, rgba(190, 242, 100, 0.1) 0%, rgba(190, 242, 100, 0.05) 100%);
-            border: 1px solid rgba(190, 242, 100, 0.2);
-        }
-
-        .section-divider {
-            background: linear-gradient(90deg, transparent 0%, rgba(190, 242, 100, 0.3) 50%, transparent 100%);
-            height: 1px;
-        }
-
-        .bento-grid-glow {
-            background: radial-gradient(circle at 50% 50%, rgba(190, 242, 100, 0.05), transparent 70%);
-        }
-
-        .bento-item {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(30, 41, 59, 0.2) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-        }
-
-        .bento-item:hover {
-            border-color: rgba(190, 242, 100, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-    span.relative {
-      position: relative;
-      z-index: 1; /* keeps text on top */
-    }
-
-    span.relative::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #FFFFFF;
-      transform: rotate(-1deg);
-      z-index: -1; /* behind the text */
-      border-radius: 11px; 
-    }
-
-    .turnstile-section {
-        transition: opacity 0.5s ease, max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
-        max-height: 180px; 
-        overflow: hidden;
-    }
-
-    .turnstile-widget-container {
-        min-height: 75px; 
-    }
-
-    .section-hiding {
-        opacity: 0;
-        max-height: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    
-    .border-line { border-color: #2d2d2d; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .section-hiding { opacity: 0; max-height: 0; margin: 0; padding: 0; }
     </style>
 </head>
 
-<body class="bg-[#0f0f0f]  selection:bg-white selection:text-black">
+<body class="font-tech bg-ind-bg tech-grid min-h-screen selection:bg-ind-orange selection:text-black">
+
+    <div class="scanlines"></div>
+
     <div class="flex flex-col md:flex-row min-h-screen">
 
-        <!-- ====== START: DESKTOP-ONLY SIDEBAR ====== -->
-      <aside class="hidden md:fixed top-0 left-0 md:flex flex-col w-80 lg:w-96 h-screen bg-black z-50  border-r border-stone-800">
-
-    <div class="flex-grow  ">
-        <div>
-            <a href="#" class="flex items-center space-x-3 px-6 py-5 bg-[#000000] ">
-                <span class="font-anton font-bold text-3xl text-orange-100">ringcero</span>
-            </a>
-            <div class="text-left text-[#f2f2f2] mt-20 px-6">
-                <h2 class="font-anton text-5xl md:text-6xl uppercase mb-6 mt-6 bg-gradient-to-b from-gray-100 to-gray-400 text-transparent bg-clip-text">
-                    INSIDE<span class="block"> THE MACHINE</span>
-                </h2>
-            </div>
-        </div>
-
-        <div>
-            <div id="contact" class="w-full flex flex-col bg-[#000000] rounded-3xl px-6">
-                <div id="form-container" class="flex text-white flex-col rounded-3xl mt-auto">
-                    <p class="text-base text-neutral-300 leading-relaxed text-left text-lg tracking-normal mb-4 mt-2">
-We study systems that deliver — or will, if their trade-offs hold up. Think less pitch deck, more field report — on the strategic insights and technical proof behind billion-dollar decisions.
-                    </p>
-                    
-                    <div class="form-wrapper">
-                        <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
-                            <div class="relative w-full">
-                                <input type="email" name="email" required="" placeholder="your.email@address.com" class="w-full px-4 py-3 pr-36 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
-                                <!-- ================================================================= -->
-                                <!-- START OF HTML CHANGE 1 of 2: Updated button classes -->
-                                <!-- ================================================================= -->
-                                <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white text-black font-bold text-base rounded-lg px-5 py-2 whitespace-nowrap transition-all duration-300 ease-in-out hover:bg-gray-100 hover:translate-x-[calc(1%+2px)]">Notify Me</button>
-                                <!-- ================================================================= -->
-                                <!-- END OF HTML CHANGE 1 of 2 -->
-                                <!-- ================================================================= -->
-                            </div>
-                        </form>
-                        
-                    </div>
-                    <p class="text-sm text-neutral-400 mt-3 tracking-normal">
-                            For inquiries:
-                            <a href="mailto:contact@ringcero.com" class="bg-[#ffedd5] text-black rounded-sm px-1 pb-0.5 hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
-                    </p>
-
-                </div>
-                <div id="turnstile-section" class="pt-3 turnstile-section">
-                    <div id="turnstile-widget-container" class="turnstile-widget-container"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="mt-8 px-6 pb-6">
-        <div class="relative z-10 flex items-start space-x-6">
-            <a href="https://x.com/ringcero" target="_blank" class="text-gray-400 hover:text-orange-100 transition-colors" aria-label="X social media"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
-            <a href="https://www.youtube.com/@ringcero" target="_blank" class="text-gray-400 hover:text-orange-100 transition-colors" aria-label="YouTube channel"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.506 2.506 0 0 1-1.768 1.768C18.256 19 12 19 12 19s-6.255 0-7.814-.418a2.506 2.506 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.506 2.506 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.255 0 7.812.418ZM15.197 12 10 14.732V9.268L15.197 12Z" clip-rule="evenodd"></path></svg></a>
-            <a href="mailto:contact@ringcero.com" class="text-gray-400 hover:text-orange-100 transition-colors" aria-label="Contact via email"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
-        </div>
-    </div>
-</aside>
-        <!-- ====== END: DESKTOP-ONLY SIDEBAR ====== -->
-
-
-        <main class="w-full md:ml-80 lg:ml-96 flex-grow no-scrollbar">
+        <!-- ====== UNIFIED SIDEBAR (Mobile & Desktop) ====== -->
+        <!-- Changed: Removed 'hidden', added 'relative' for mobile, 'fixed' for desktop -->
+        <aside class="relative w-full flex flex-col md:fixed md:top-0 md:left-0 md:w-80 lg:w-96 h-auto md:h-screen bg-ind-panel z-50 shadow-[4px_0_24px_rgba(0,0,0,0.8)]">
             
-            <!-- ====== START: MOBILE-ONLY HEADER SECTION ====== -->
-            <header class="md:hidden bg-black space-y-3 max-w-3xl mx-auto border-b border-b-stone-800 px-5">
-                <a href="#" class="flex items-center space-x-3   px-6 py-3.5 bg-[#000000]  fixed top-0 left-0 right-0 z-50">
-                  <span class="font-anton font-bold text-3xl text-orange-100">ringcero</span>
-                </a>
+            <!-- Right Edge Decoration (Desktop Only) -->
+            <div class="hidden md:flex absolute right-0 top-0 bottom-0 w-[1px] bg-[#222] flex-col items-center justify-center gap-20">
+                <div class="w-[3px] h-12 bg-ind-orange/50"></div>
+                <div class="w-[3px] h-12 bg-[#333]"></div>
+            </div>
+
+            <!-- Sidebar Header -->
+            <div class="px-6 py-3 bg-ind-surface/80 border-b border-ind-border relative overflow-hidden">
+                <!-- Top Left/Right decorative screws -->
+                <div class="absolute top-2 left-2 text-[#333] text-[8px]"><i class="fa-solid fa-plus"></i></div>
+                <div class="absolute top-2 right-2 text-[#333] text-[8px]"><i class="fa-solid fa-plus"></i></div>
                 
-                <div class="text-left text-[#f2f2f2 px-6 pt-8 ">
-                    <h2 class="mt-20 font-anton text-5xl uppercase bg-gradient-to-b from-gray-100 to-gray-400 text-transparent bg-clip-text">
-                        INSIDE <br> THE MACHINE
+                <a href="#" class="flex items-start gap-4 group mt-2">
+                    <div class="flex flex-col justify-center">
+                        <span class="font-industrial font-bold text-4xl text-white tracking-wide leading-[0.8] block uppercase">RINGCERO</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Sidebar Content -->
+            <div class="flex-grow flex flex-col justify-between overflow-y-auto custom-scrollbar sidebar-texture relative">
+                <!-- Content Top -->
+                <div class="p-6 mt-6 md:mt-11">
+                    <div class="relative z-10">
+                        <div class="mb-8 md:mb-10">
+                            <div class="flex items-center gap-2 mb-3 opacity-60">
+                                <span class="text-[8px] border border-gray-700 text-gray-500 px-1 py-0.5 font-mono">SEC-01</span>
+                                <div class="h-[1px] w-8 bg-ind-orange"></div>
+                            </div>
+                            
+                            <h2 class="font-industrial font-bold text-6xl text-white uppercase leading-[0.85] mb-4 drop-shadow-md">
+                                INSIDE<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-600">THE MACHINE</span>
+                            </h2>
+                            
+                            <p class="text-[10px] text-gray-500 font-mono leading-relaxed border-l border-ind-border pl-3 ml-1">
+                                // NO PITCH DECKS.<br>
+                                // FIELD REPORTS ONLY.
+                            </p>
+                        </div>
+
+                        <!-- Subscription Card -->
+                        <div id="contact" class="bg-[#0e0e0e] relative group chamfer-card">
+                            <!-- Decorative Border Lines -->
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-ind-border to-transparent opacity-50"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-ind-border to-transparent opacity-50"></div>
+
+                            <div class="p-5 relative">
+                                <!-- Status Header -->
+                                <div class="flex justify-between items-center mb-5 pb-2 border-b border-dashed border-[#222]">
+                                    <span class="text-[9px] uppercase tracking-widest text-gray-500 font-tech">Input_Stream</span>
+                                    <div class="flex items-center gap-1.5 bg-[#050505] px-2 py-0.5 border border-[#222] rounded-sm">
+                                        <span class="w-1 h-1 bg-green-500 rounded-full animate-[pulse_1s_infinite]"></span>
+                                        <span class="text-[8px] text-green-500 uppercase tracking-widest font-tech font-bold">Live</span>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-xs text-gray-400 mb-6 leading-relaxed font-tech">
+                                    We study systems that deliver. Trade-offs behind billion-dollar tech.
+                                </p>
+                                
+                                <div class="form-wrapper">
+                                    <form id="waitlist-form" action="https://submit-form.com/txFYTYnuV" class="w-full mb-1">
+                                        <div class="relative w-full space-y-2">
+                                            <!-- Industrial Input Group -->
+                                            <div class="flex items-center bg-[#050505] border border-[#222] px-3 py-2 group-focus-within:border-ind-orange/50 transition-colors">
+                                                <span class="text-ind-orange mr-2 font-bold font-tech text-xs">></span>
+                                                <input type="email" name="email" required placeholder="user@root.local" class="bg-transparent w-full text-white text-xs font-mono focus:outline-none placeholder-gray-700 uppercase font-tech" aria-label="Email Address">
+                                            </div>
+                                                
+                                            <!-- Button -->
+                                            <button type="submit" class="w-full bg-white hover:bg-ind-orange text-black font-medium font-industrial text-xl py-1 uppercase tracking-wider transition-colors cut-corner relative overflow-hidden group/btn">
+                                                <span class="relative z-10 flex items-center justify-center gap-2">
+                                                    Execute <i class="fa-solid fa-terminal text-[10px]"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                <div class="mt-4 flex justify-between items-center text-[8px] font-mono text-gray-600 pt-2 font-tech">
+                                    <span>PROTO: SMTP</span>
+                                    <a href="mailto:contact@ringcero.com" class="hover:text-ind-orange transition-colors">CONTACT_ADMIN</a>
+                                </div>
+
+                                <div id="turnstile-section" class="pt-2 turnstile-section">
+                                    <!-- REMOVED: scale-[0.85] origin-top-left -->
+                                    <!-- ADDED: w-full -->
+                                    <div id="turnstile-widget-container" class="turnstile-widget-container w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+                <!-- Sidebar Footer Stats -->
+                <div class="border-t border-r border-[#222] bg-ind-bg z-20">
+                    <div class="grid grid-cols-2 gap-px bg-[#222] border border-[#222]">
+                        <a href="https://x.com/ringcero" target="_blank" rel="noopener noreferrer" aria-label="ringcero Twitter" class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-orange text-gray-400 group-hover:text-white text-3xl">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@ringcero" target="_blank" rel="noopener noreferrer" aria-label="ringcero YouTube" class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-orange text-gray-400 group-hover:text-white text-3xl">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- ====== MAIN CONTENT ====== -->
+        <main class="w-full md:ml-80 lg:ml-96 flex-grow relative z-10">
+            
+            <!-- REPORTS SECTION -->
+            <section class="p-6 md:p-12 lg:p-20 pt-10 md:pt-20 min-h-screen">
+                
+                <!-- Section Header -->
+                <div class="mb-8 relative">
+                    <div class="absolute -left-6 top-2 w-1 h-12 bg-ind-orange hidden md:block"></div>
+                    <div class="flex items-center gap-2 mb-2 text-ind-orange text-[10px] font-bold uppercase tracking-[0.3em] font-tech">
+                        <i class="fa-solid fa-database"></i> Database_Access
+                    </div>
+                    <!-- FONT: TEKO -->
+                    <h2 class="font-industrial font-bold text-7xl md:text-8xl text-ind-white uppercase ">
+                        The <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800">Breakdowns</span>
                     </h2>
                 </div>
 
-                <div id="contact-mobile" class="max-w-2xl flex-col px-6 ">
-                    <div id="form-container-mobile" class="flex max-w-xl text-white flex-col rounded-3xl">
-                        <p class="text-base text-neutral-300 leading-relaxed text-left text-lg tracking-normal mb-4">
-    We study systems that deliver — or will, if their trade-offs hold up. Think less pitch deck, more field report.
-                        </p>
-
-                        <div class="form-wrapper max-w-md">
-                            <form id="waitlist-form-mobile" action="https://submit-form.com/txFYTYnuV" class="w-full mb-3">
-                                <div class="relative w-full">
-                                    <input type="email" name="email" required placeholder="your.email@address.com" class="w-full px-4 py-3 pr-36 rounded-xl text-white bg-[#2d2d2d] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#000000] focus:ring-[#000000]" aria-label="Email Address">
-                                    <!-- ================================================================= -->
-                                    <!-- START OF HTML CHANGE 2 of 2: Updated button classes -->
-                                    <!-- ================================================================= -->
-                                    <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white text-black font-bold text-base rounded-lg px-5 py-2 whitespace-nowrap transition-all duration-300 ease-in-out hover:bg-gray-100 hover:translate-x-[calc(1%+2px)]">Notify Me</button>
-                                    <!-- ================================================================= -->
-                                    <!-- END OF HTML CHANGE 2 of 2 -->
-                                    <!-- ================================================================= -->
-                                </div>
-                            </form>
-                            
+                <!-- Grid -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <!-- Card 1 -->
+                    <div class="group relative bg-ind-panel border border-ind-border hover:border-ind-orange/50 transition-all duration-300 cut-corner-top-right">
+                        <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-orange/30">
+                            <img class="w-full h-full hacker-img transform transition-transform duration-700" src="/images/alibaba.png" alt="Alibaba Report">
+                            <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
                         </div>
-                         <p class="text-sm text-neutral-400 mt-3 tracking-normal">
-                                For inquiries: 
-                                <a href="mailto:contact@ringcero.com" class="bg-[#ffedd5] text-black rounded-sm px-1 pb-0.5 hover:text-[#000000] hover:bg-[#fffdd0] transition-colors duration-400 ">contact@ringcero.com</a>
+
+                        <div class="p-5 relative">
+                            <div class="absolute right-0 top-0 p-2 opacity-30 group-hover:opacity-100 transition-opacity">
+                                <i class="fa-solid fa-microchip text-4xl text-ind-border group-hover:text-ind-orange"></i>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-2 h-2 bg-ind-orange rounded-sm"></span>
+                                    <span class="text-[10px] text-gray-500 uppercase tracking-widest font-bold font-tech">Infrastructure Analysis</span>
+                                </div>
+                                <h3 class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-orange transition-colors uppercase">
+                                    ALIBABA CLOUD
+                                </h3>
+                                <div class="text-ind-text font-mono text-xs uppercase tracking-wider mb-4 border-b border-dashed border-ind-border pb-4 font-tech">
+                                    Ref: GPU_Reduction_83%
+                                </div>
+                            </div>
+                            
+                            <p class="text-sm text-gray-400 font-mono leading-relaxed mb-6 font-tech">
+                                <span class="text-ind-orange">></span> Alibaba Cloud just announced Aegaeon.<br>
+                                <span class="text-ind-orange">></span> Inference scaling engine detected.<br>
+                                <span class="text-ind-orange">></span> GPU count reduced by 83%.
                             </p>
 
-                    </div>
-                    <div id="turnstile-section-mobile" class="pt-3 turnstile-section max-w-md">
-                        <div id="turnstile-widget-container-mobile" class="turnstile-widget-container"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="relative z-10 flex items-start space-x-6 px-6 pb-6">
-                        <a href="https://x.com/ringcero" target="_blank" class="text-gray-400 hover:text-orange-100 transition-colors" aria-label="X social media"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
-                        <a href="https://www.youtube.com/@ringcero" target="_blank" class="text-gray-400 hover:text-orange-100 transition-colors" aria-label="YouTube channel"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.506 2.506 0 0 1-1.768 1.768C18.256 19 12 19 12 19s-6.255 0-7.814-.418a2.506 2.506 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.418-4.814a2.506 2.506 0 0 1 1.768-1.768C5.744 5 12 5 12 5s6.255 0 7.812.418ZM15.197 12 10 14.732V9.268L15.197 12Z" clip-rule="evenodd"></path></svg></a>
-                        <a href="mailto:contact@ringcero.com" class="text-gray-400 hover:text-orange-100 transition-colors" aria-label="Contact via email"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></a>
-                    </div>
-                </div>
-            </header>
-            <!-- ====== END: MOBILE-ONLY HEADER SECTION ====== -->
-
-
-            <section id="reports" class="relative text-white py-4 sm:py-12 px-11 md:px-20 scroll-mt-24 mt-4">
-                <div class="flex flex-col items-start mb-14">
-                  <h2 class="font-anton text-5xl md:text-6xl text-[#f3f4ef] uppercase">
-                    The Breakdowns
-                  </h2>
-                  <p class="text-xl text-white mt-6 tracking-wide font-bold">
-                    A library of strategic analyses dissecting the technology and trade-offs 
-                    behind AI-first mission-critical systems.
-                  </p>
-                </div>
-
-                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 ">
-                    
-                    <!-- Report 1 -->
-                    <div class="group cursor-pointer relative">
-
-                        <div class="absolute -inset-6 bg-[#1c1c1c] rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 scale-95 group-hover:scale-100"></div>
-
-                        <div class="relative">
-                            <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:">
-                                <img class="w-full h-auto object-cover" src="/images/alibaba.png" alt="Report 1 Image">
-                                <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
-                            </div>
-                            
-                            <div>
-                                <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
-                                    How Alibaba Cut Its GPUs by 83% <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
-                                </h3>
-                                <p class="text-base text-[#f3eee5] mt-4 text-lg leading-wide tracking-wide">
-                                    Alibaba Cloud just announced Aegaeon, an inference scaling engine that allowed them to cut their GPU count by 83%. In this report, we'll dive deep into how it works.
-                                </p>
-                            </div>
+                            <button class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-orange transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(255,62,0,0.1)] font-tech">
+                                <span>Access File</span>
+                                <i class="fa-solid fa-arrow-right text-ind-orange"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Report 2 -->
-                     <div class="group cursor-pointer relative" >
+                    <!-- Card 2 -->
+                    <div class="group relative bg-ind-panel border border-ind-border hover:border-ind-orange/50 transition-all duration-300 cut-corner-top-right">
+                        <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-orange/30">
+                            <img class="w-full h-full hacker-img transform transition-transform duration-700" src="/images/dbs.png" alt="DBS Report">
+                            <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
+                        </div>
 
-                        <div class="absolute -inset-6 bg-[#1c1c1c] rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 scale-95 group-hover:scale-100"></div>
+                        <div class="p-5 relative">
+                            <div class="absolute right-0 top-0 p-2 opacity-30 group-hover:opacity-100 transition-opacity">
+                                <i class="fa-solid fa-server text-4xl text-ind-border group-hover:text-ind-orange"></i>
+                            </div>
 
-                        <div class="relative">
-                            <div class="relative mb-5 rounded-xl overflow-hidden transform transition-transform duration-500 ease-in-out group-hover:">
-                                <img class="w-full h-auto object-cover" src="/images/dbs.png" alt="Report 1 Image">
-                                <div class="absolute inset-0 bg-black/10 transition-colors duration-500 ease-in-out group-hover:bg-transparent z-10"></div>
+                            <div class="mb-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-2 h-2 bg-ind-orange rounded-sm"></span>
+                                    <span class="text-[10px] text-gray-500 uppercase tracking-widest font-bold font-tech">Database Strategy</span>
+                                </div>
+                                <h3 class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-orange transition-colors uppercase">
+                                    DB SCALING MYTH
+                                </h3>
+                                <div class="text-ind-text font-mono text-xs uppercase tracking-wider mb-4 border-b border-dashed border-ind-border pb-4 font-tech">
+                                    Ref: Vertical_vs_Horizontal
+                                </div>
                             </div>
                             
-                            <div>
-                                <h3 class="font-anton text-3xl text-[#f5f5f4] uppercase transition-colors duration-300 group-hover:text-orange-100 leading-tight">
-                                    Why You're Scaling Your Database Wrong <span class="text-gray-400 tracking-normal">(UPCOMING)</span>
-                                </h3>
-                                <p class="text-base text-[#f3eee5] text-lg mt-4 leading-wide tracking-wide">
-                                    Scaling out has long been the norm — but is it still best for modern workloads? This report explores why scaling up may be the smarter choice.
-                                </p>
-                            </div>
+                            <p class="text-sm text-gray-400 font-mono leading-relaxed mb-6 font-tech">
+                                <span class="text-ind-orange">></span> Scaling out is the norm.<br>
+                                <span class="text-ind-orange">></span> Analysis indicates inefficiency.<br>
+                                <span class="text-ind-orange">></span> Why scaling up is the modern choice.
+                            </p>
+
+                            <button class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-orange transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(255,62,0,0.1)] font-tech">
+                                <span>Access File</span>
+                                <i class="fa-solid fa-arrow-right text-ind-orange"></i>
+                            </button>
                         </div>
                     </div>
-                    
                 </div>
             </section>
-            <footer class="mt-6 p-6 md:px-12 py-6 text-xs text-gray-400 border-t border-line font-anton">
-                &copy; <span id="year"></span> ringcero // All Rights Reserved // 
-                <a href="/privacy-policy" class="hover:text-orange-100 transition-colors">Privacy_Policy</a>
+
+            <!-- Footer -->
+            <footer class="p-6 md:p-6 border-t border-ind-border bg-ind-panel">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-gray-600 font-tech">
+                    <div>
+                        &copy; <span id="year"></span> ringcero systems // All Rights Reserved
+                    </div>
+                    <div class="flex gap-6">
+                        <a href="/privacy-policy" class="hover:text-ind-orange transition-colors">Privacy_Protocol</a>
+                        <a href="#" class="hover:text-ind-orange transition-colors">Term_Log</a>
+                    </div>
+                </div>
             </footer>
         </main>
     </div>
 
+    <!-- Scripts -->
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
     
-    <!-- ====== SCRIPT TO HANDLE BOTH FORMS ====== -->
     <script>
       function setupWaitlistForm(formId) {
           const formElement = document.getElementById(formId);
           if (!formElement) return;
 
-          const formWrapper = formElement.parentElement;
-          const topLevelContainer = formWrapper.parentElement;
-          
           const submitButton = formElement.querySelector('button[type="submit"]');
           const emailInput = formElement.querySelector('input[name="email"]');
-          const turnstileSection = topLevelContainer.nextElementSibling;
-          const turnstileContainer = turnstileSection.querySelector('.turnstile-widget-container');
+          const turnstileSection = document.getElementById('turnstile-section');
+          const turnstileContainer = turnstileSection ? turnstileSection.querySelector('.turnstile-widget-container') : null;
 
           let isTurnstileVerified = false;
           let isTurnstileRendering = false;
 
           async function handleFormSubmission() {
               const action = formElement.action;
-              const turnstileInput = turnstileSection.querySelector('[name="cf-turnstile-response"]');
+              const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
               const turnstileResponse = turnstileInput ? turnstileInput.value : null;
 
               const payload = {
@@ -402,7 +393,7 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
                   "cf-turnstile-response": turnstileResponse
               };
 
-              submitButton.textContent = 'Submitting...';
+              submitButton.innerHTML = '<span class="relative z-10">UPLOADING...</span>';
               submitButton.disabled = true;
 
               try {
@@ -413,14 +404,19 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
                   });
 
                   if (response.ok) {
-                      formWrapper.innerHTML = `<div class="text-center w-full bg-[#2d2d2d] rounded-xl py-3"><p class="text-base text-[#ffffff]">Thanks, you're on the list!</p></div>`;
+                      formElement.innerHTML = `
+                        <div class="bg-green-500/10 border border-green-500 p-3 text-center">
+                            <p class="text-green-500 font-bold font-mono text-xs font-tech">> UPLOAD COMPLETE</p>
+                        </div>`;
                       if (turnstileSection) turnstileSection.classList.add('section-hiding');
                   } else {
                       throw new Error('Form submission failed.');
                   }
               } catch (error) {
-                  formWrapper.innerHTML = `<div class="text-center w-full bg-red-900/50 border border-red-700 rounded-lg py-3"><p class="text-base text-red-200">Oops! Please try again.</p></div>`;
-                  console.error('Submission error:', error);
+                  formElement.innerHTML = `
+                    <div class="bg-red-500/10 border border-red-500 p-3 text-center">
+                        <p class="text-red-500 font-bold font-mono text-xs font-tech">ERROR: CONNECTION REFUSED</p>
+                    </div>`;
               }
           }
 
@@ -430,22 +426,22 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
               
               if (turnstileContainer) {
                   submitButton.disabled = true;
-                  submitButton.textContent = 'Verifying...';
+                  submitButton.innerHTML = '<span class="relative z-10">VERIFYING...</span>';
                   
                   turnstile.render(turnstileContainer, {
                       sitekey: '0x4AAAAAABvRbXQF4cQb7fVj',
                       theme: 'dark',
-                      size: 'flexible',
+                      size: 'flexible', // CHANGED: 'compact' -> 'flexible' for full width
                       callback: function(token) {
                           isTurnstileVerified = true;
                           submitButton.disabled = false;
-                          submitButton.textContent = 'Notify Me';
+                          submitButton.innerHTML = '<span class="relative z-10">Execute <i class="fa-solid fa-terminal text-[10px] ml-1"></i></span>';
                           if (typeof onSuccessCallback === 'function') onSuccessCallback();
                       },
                       'error-callback': function() {
                           isTurnstileVerified = false;
                           submitButton.disabled = true;
-                          submitButton.textContent = 'Verification Failed';
+                          submitButton.innerHTML = '<span class="relative z-10">ACCESS DENIED</span>';
                       }
                   });
               }
@@ -466,14 +462,10 @@ We study systems that deliver — or will, if their trade-offs hold up. Think le
       }
 
       function onloadTurnstileCallback() {
-          setupWaitlistForm('waitlist-form'); // For desktop
-          setupWaitlistForm('waitlist-form-mobile'); // For mobile
+          setupWaitlistForm('waitlist-form'); 
       }
     </script>
-    
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
+    <script> AOS.init(); </script>
 </body>
 </html>
