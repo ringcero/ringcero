@@ -591,10 +591,23 @@
                         throw new Error('Form submission failed.');
                     }
                 } catch (error) {
-                    formElement.innerHTML = `
-                    <div class="bg-gradient-to-r from-[#3a0b0b]/20 to-[#2a0a0a]/10 border border-red-700/25 rounded-md p-3 text-center">
-                        <p class="text-white font-bold font-mono text-sm">ERROR: CONNECTION REFUSED</p>
-                    </div>`;
+                        formElement.innerHTML = `
+                        <div role="alert" aria-live="assertive" class="fade-in-quick w-full border-l-2 border-red-600 bg-[#0a0202]/70 p-4 relative overflow-hidden rounded-sm">
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent"></div>
+                    
+                            <div class="font-tech text-xs space-y-2">
+                                <div class="flex items-center gap-2 text-red-500 mb-2">
+                                    <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+                                    <span class="font-bold tracking-widest uppercase">TRANSMISSION_ERROR</span>
+                                </div>
+                                <div class="text-gray-500">
+                                    <span class="text-ind-border mr-1">></span> STATUS: <span class="text-white">NETWORK_FAILURE</span>
+                                </div>
+                                <div class="text-gray-300 italic mt-3 pt-2 border-t border-dashed border-[#222] text-[12px]">
+                                    // PLEASE_TRY_AGAIN_LATER
+                                </div>
+                            </div>
+                        </div>`;
                 } finally {
                     // ensure flicker is removed and button is enabled if it still exists
                     if (submitButton) {
