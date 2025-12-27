@@ -3,7 +3,6 @@ title: Privacy Specification
 type: docs
 ---
 
-# Privacy Specification
 
 **Version 1.0 // Last Revised: 28 Aug 2025**
 
