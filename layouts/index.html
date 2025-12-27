@@ -35,7 +35,8 @@
                             panel: '#0a0a0a',
                             surface: '#111111',
                             border: '#333333',
-                            orange: '#ff3e00', // Safety Orange
+                            red: '#F82F4D',
+                            blue: '#3A53FF',
                             text: '#888888',
                             white: '#e5e5e5',
                         }
@@ -121,12 +122,32 @@
         }
 
         /* --- UTILS --- */
+        /* Scrollbar (Rook Style - Gray) */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+            border-left: 1px solid #222;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Forward compatibility for elements explicitly using this class */
         .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
+            width: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #050505;
+            border-left: 1px solid #222;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -134,12 +155,17 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #ff3e00;
+            background: #555;
         }
 
         ::selection {
-            background: #ff3e00;
-            color: #000;
+            background: #3A53FF !important;
+            color: #fff !important;
+        }
+
+        body.select-alt ::selection {
+            background: #F82F4D !important;
+            color: #fff !important;
         }
 
         .turnstile-section {
@@ -166,10 +192,10 @@
             }
 
             40% {
-                background-color: #ff3e00;
-                /* ind-orange */
+                background-color: #3A53FF;
+                /* ind-blue */
                 color: #fff;
-                box-shadow: 0 0 12px rgba(255, 62, 0, 0.9), inset 0 0 6px rgba(255, 62, 0, 0.12);
+                box-shadow: 0 0 12px rgba(58, 83, 255, 0.9), inset 0 0 6px rgba(58, 83, 255, 0.12);
                 transform: translateY(-1px);
             }
 
@@ -181,9 +207,9 @@
             }
 
             100% {
-                background-color: #ff3e00;
+                background-color: #3A53FF;
                 color: #fff;
-                box-shadow: 0 0 8px rgba(255, 62, 0, 0.6);
+                box-shadow: 0 0 8px rgba(58, 83, 255, 0.6);
             }
         }
 
@@ -236,7 +262,7 @@
     </style>
 </head>
 
-<body class="font-tech bg-ind-bg tech-grid min-h-screen selection:bg-ind-orange selection:text-black">
+<body class="font-tech bg-ind-bg tech-grid min-h-screen">
 
     <div class="scanlines"></div>
 
@@ -250,7 +276,7 @@
             <!-- Right Edge Decoration (Desktop Only) -->
             <div
                 class="hidden md:flex absolute right-0 top-0 bottom-0 w-[1px] bg-[#222] flex-col items-center justify-center gap-20">
-                <div class="w-[3px] h-12 bg-ind-orange/50"></div>
+                <div class="w-[3px] h-12 bg-ind-blue"></div>
                 <div class="w-[3px] h-12 bg-[#333]"></div>
             </div>
 
@@ -262,9 +288,11 @@
                 <div class="absolute top-2 right-2 text-[#333] text-[8px]"><i class="fa-solid fa-plus"></i></div>
 
                 <a href="#" class="inline-flex items-center gap-3 group mt-2 cursor-pointer" aria-label="ringcero">
-                    <img src="/icon2.png" alt="ringcero logo" loading="lazy" class="w-7 h-7 md:w-8 md:h-8 object-contain rounded-sm">
+                    <img src="/icon2.png" alt="ringcero logo" loading="lazy"
+                        class="w-7 h-7 md:w-8 md:h-8 object-contain rounded-sm">
                     <div class="flex flex-col justify-center">
-                        <span class="font-industrial lowercase text-3xl md:text-4xl font-bold text-white tracking-tight hover:text-ind-orange transition-colors">ringcero</span>
+                        <span
+                            class="font-industrial lowercase text-3xl md:text-4xl font-bold text-white tracking-tight hover:text-ind-blue transition-colors">ringcero</span>
                     </div>
                 </a>
             </div>
@@ -279,7 +307,7 @@
                             <div class="flex items-center gap-2 mb-3 opacity-60">
                                 <span
                                     class="text-[8px] border border-gray-700 text-gray-500 px-1 py-0.5 font-mono">SEC-01</span>
-                                <div class="h-[1px] w-8 bg-ind-orange"></div>
+                                <div class="h-[1px] w-8 bg-ind-blue"></div>
                             </div>
 
                             <h2
@@ -331,8 +359,8 @@
                                         <div class="relative w-full space-y-2">
                                             <!-- Industrial Input Group -->
                                             <div
-                                                class="flex items-center bg-[#050505] border border-[#222] px-3 py-2 group-focus-within:border-ind-orange/50 transition-colors">
-                                                <span class="text-ind-orange mr-2 font-bold font-tech text-xs">></span>
+                                                class="flex items-center bg-[#050505] border border-[#222] px-3 py-2 group-focus-within:border-ind-blue/50 transition-colors">
+                                                <span class="text-ind-blue mr-2 font-bold font-tech text-xs">></span>
                                                 <input type="email" name="email" required placeholder="your@email.com"
                                                     class="bg-transparent w-full text-white text-xs font-mono focus:outline-none placeholder-gray-700 uppercase font-tech"
                                                     aria-label="Email Address">
@@ -340,7 +368,7 @@
 
                                             <!-- Button -->
                                             <button type="submit"
-                                                class="w-full bg-white hover:bg-ind-orange text-black font-medium font-industrial text-xl py-1 uppercase tracking-wider transition-colors cut-corner relative overflow-hidden group/btn">
+                                                class="w-full bg-white hover:bg-ind-blue text-black hover:text-white font-medium font-industrial text-xl py-1 uppercase tracking-wider transition-colors cut-corner relative overflow-hidden group/btn">
                                                 <span class="relative z-10 flex items-center justify-center gap-2">
                                                     Execute <i class="fa-solid fa-terminal text-[10px]"></i>
                                                 </span>
@@ -353,7 +381,7 @@
                                     class="mt-4 flex justify-between items-center text-[8px] font-mono text-gray-600 pt-2 font-tech">
                                     <span>PROTO: SMTP</span>
                                     <a href="mailto:contact@ringcero.com"
-                                        class="hover:text-ind-orange transition-colors">CONTACT_ADMIN</a>
+                                        class="hover:text-ind-red transition-colors">CONTACT_ADMIN</a>
                                 </div>
 
                                 <div id="turnstile-section" class="pt-2 turnstile-section">
@@ -372,16 +400,16 @@
                     <div class="grid grid-cols-3 gap-px bg-[#222] border border-[#222]">
                         <a href="https://x.com/ringcero" target="_blank" rel="noopener noreferrer"
                             aria-label="ringcero Twitter"
-                            class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-orange text-gray-400 group-hover:text-white text-3xl">
+                            class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-red text-gray-400 group-hover:text-white text-3xl">
                             <i class="fa-brands fa-twitter"></i>
                         </a>
                         <a href="mailto:contact@ringcero.com" rel="noopener noreferrer" aria-label="ringcero YouTube"
-                            class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-orange text-gray-400 group-hover:text-white text-3xl">
+                            class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-blue text-gray-400 group-hover:text-white text-3xl">
                             <i class="fa-solid fa-envelope"></i>
                         </a>
                         <a href="https://www.youtube.com/@ringcero" target="_blank" rel="noopener noreferrer"
                             aria-label="ringcero YouTube"
-                            class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-orange text-gray-400 group-hover:text-white text-3xl">
+                            class="block bg-ind-bg p-2 flex group items-center justify-center gap-3 hover:bg-ind-red text-gray-400 group-hover:text-white text-3xl">
                             <i class="fa-brands fa-youtube"></i>
                         </a>
                     </div>
@@ -398,11 +426,12 @@
 
                 <!-- Section Header -->
                 <div class="mb-8 relative">
-                    <!--div class="absolute -left-6 top-1 w-1 h-12 bg-ind-orange hidden md:block"></div-->
-                    <div class="flex items-center gap-2 mb-2 text-ind-orange text-[10px] font-bold uppercase tracking-[0.3em] font-tech">
-                         <span
-                                    class="text-[8px] border border-gray-700 text-gray-700 px-1 py-0.5 font-mono">SEC-02</span>
-                                      <div class="h-[1px] w-8 bg-ind-orange/60"></div>
+                    <!--div class="absolute -left-6 top-1 w-1 h-12 bg-ind-red hidden md:block"></div-->
+                    <div
+                        class="flex items-center gap-2 mb-2 text-ind-blue text-[10px] font-bold uppercase tracking-[0.3em] font-tech">
+                        <span
+                            class="text-[8px] border border-gray-700 text-gray-700 px-1 py-0.5 font-mono">SEC-02</span>
+                        <div class="h-[1px] w-8 bg-ind-blue/60"></div>
                     </div>
                     <!-- FONT: TEKO -->
                     <h2 class="font-industrial font-bold text-6xl md:text-8xl text-ind-white uppercase ">
@@ -416,9 +445,8 @@
 
                     <!-- Card 1 -->
                     <div
-                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-orange/50 transition-all duration-300 cut-corner-top-right">
-                        <div
-                            class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-orange/30">
+                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right">
+                        <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-blue/30">
                             <img class="w-full h-full hacker-img transform transition-transform duration-700"
                                 src="/images/alibaba.png" alt="Alibaba Report">
                             <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
@@ -427,19 +455,18 @@
                         <div class="p-5 relative">
                             <div
                                 class="absolute right-0 top-0 p-2 opacity-30 group-hover:opacity-100 transition-opacity">
-                                <i
-                                    class="fa-solid fa-microchip text-4xl text-ind-border group-hover:text-ind-orange"></i>
+                                <i class="fa-solid fa-microchip text-4xl text-ind-border group-hover:text-ind-blue"></i>
                             </div>
 
                             <div class="mb-4">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="w-2 h-2 bg-ind-orange rounded-sm"></span>
+                                    <span class="w-2 h-2 bg-ind-blue rounded-sm"></span>
                                     <span
                                         class="text-[10px] text-gray-500 uppercase tracking-widest font-bold font-tech">Infrastructure
                                         Analysis</span>
                                 </div>
                                 <h3
-                                    class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-orange transition-colors uppercase">
+                                    class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-blue transition-colors uppercase">
                                     ALIBABA CLOUD
                                 </h3>
                                 <div
@@ -449,24 +476,23 @@
                             </div>
 
                             <p class="text-sm text-gray-400 font-mono leading-relaxed mb-6 font-tech">
-                                <span class="text-ind-orange">></span> Alibaba Cloud just announced Aegaeon.<br>
-                                <span class="text-ind-orange">></span> Inference scaling engine detected.<br>
-                                <span class="text-ind-orange">></span> GPU count reduced by 83%.
+                                <span class="text-ind-red">></span> Alibaba Cloud just announced Aegaeon.<br>
+                                <span class="text-ind-red">></span> Inference scaling engine detected.<br>
+                                <span class="text-ind-red">></span> GPU count reduced by 83%.
                             </p>
 
                             <button
-                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-orange transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(255,62,0,0.1)] font-tech">
+                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-red transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(248,47,77,0.1)] font-tech">
                                 <span>Access File</span>
-                                <i class="fa-solid fa-arrow-right text-ind-orange"></i>
+                                <i class="fa-solid fa-arrow-right text-ind-red"></i>
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 2 -->
                     <div
-                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-orange/50 transition-all duration-300 cut-corner-top-right">
-                        <div
-                            class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-orange/30">
+                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right">
+                        <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-blue/30">
                             <img class="w-full h-full hacker-img transform transition-transform duration-700"
                                 src="/images/dbs.png" alt="DBS Report">
                             <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
@@ -475,18 +501,18 @@
                         <div class="p-5 relative">
                             <div
                                 class="absolute right-0 top-0 p-2 opacity-30 group-hover:opacity-100 transition-opacity">
-                                <i class="fa-solid fa-server text-4xl text-ind-border group-hover:text-ind-orange"></i>
+                                <i class="fa-solid fa-server text-4xl text-ind-border group-hover:text-ind-blue"></i>
                             </div>
 
                             <div class="mb-4">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="w-2 h-2 bg-ind-orange rounded-sm"></span>
+                                    <span class="w-2 h-2 bg-ind-blue rounded-sm"></span>
                                     <span
                                         class="text-[10px] text-gray-500 uppercase tracking-widest font-bold font-tech">Database
                                         Strategy</span>
                                 </div>
                                 <h3
-                                    class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-orange transition-colors uppercase">
+                                    class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-blue transition-colors uppercase">
                                     DB SCALING MYTH
                                 </h3>
                                 <div
@@ -496,15 +522,15 @@
                             </div>
 
                             <p class="text-sm text-gray-400 font-mono leading-relaxed mb-6 font-tech">
-                                <span class="text-ind-orange">></span> Scaling out is the norm.<br>
-                                <span class="text-ind-orange">></span> Analysis indicates inefficiency.<br>
-                                <span class="text-ind-orange">></span> Why scaling up is the modern choice.
+                                <span class="text-ind-red">></span> Scaling out is the norm.<br>
+                                <span class="text-ind-red">></span> Analysis indicates inefficiency.<br>
+                                <span class="text-ind-red">></span> Why scaling up is the modern choice.
                             </p>
 
                             <button
-                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-orange transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(255,62,0,0.1)] font-tech">
+                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-red transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(248,47,77,0.1)] font-tech">
                                 <span>Access File</span>
-                                <i class="fa-solid fa-arrow-right text-ind-orange"></i>
+                                <i class="fa-solid fa-arrow-right text-ind-red"></i>
                             </button>
                         </div>
                     </div>
@@ -519,8 +545,8 @@
                         &copy; <span id="year"></span> ringcero systems // All Rights Reserved
                     </div>
                     <div class="flex gap-6">
-                        <a href="/privacy-policy" class="hover:text-ind-orange transition-colors">Privacy_Protocol</a>
-                        <a href="#" class="hover:text-ind-orange transition-colors">Term_Log</a>
+                        <a href="/privacy-policy" class="hover:text-ind-blue transition-colors">Privacy_Protocol</a>
+                        <a href="#" class="hover:text-ind-blue transition-colors">Term_Log</a>
                     </div>
                 </div>
             </footer>
@@ -529,6 +555,28 @@
 
     <!-- Scripts -->
     <script>
+        // Alternating selection color logic (Safe)
+        let hasCompletedSelection = false;
+
+        function checkSelection() {
+            const selection = window.getSelection();
+            if (selection && selection.toString().trim().length > 0) {
+                hasCompletedSelection = true;
+            }
+        }
+
+        document.addEventListener('mouseup', checkSelection);
+        document.addEventListener('keyup', checkSelection);
+
+        document.addEventListener('selectionchange', () => {
+            const selection = window.getSelection();
+            // Only toggle color if we are clearing a PREVIOUSLY COMPLETED selection
+            if (selection && selection.isCollapsed && hasCompletedSelection) {
+                document.body.classList.toggle('select-alt');
+                hasCompletedSelection = false;
+            }
+        });
+
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
@@ -570,11 +618,11 @@
                     if (response.ok) {
                         // INDUSTRIAL TERMINAL SUCCESS
                         formElement.innerHTML = `
-                        <div role="status" aria-live="polite" class="fade-in-quick w-full border-l-2 border-ind-orange bg-ind-panel/90 p-4 relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-ind-orange/50 to-transparent"></div>
+                        <div role="status" aria-live="polite" class="fade-in-quick w-full border-l-2 border-ind-red bg-ind-panel/90 p-4 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-ind-red/50 to-transparent"></div>
                             
                             <div class="font-tech text-xs space-y-1.5">
-                                <div class="flex items-center gap-2 text-ind-orange mb-2">
+                                <div class="flex items-center gap-2 text-ind-red mb-2">
                                     <i class="fa-solid fa-circle-check animate-pulse"></i>
                                     <span class="font-bold tracking-widest uppercase">TRANSMISSION_COMPLETE</span>
                                 </div>
@@ -594,7 +642,7 @@
                         throw new Error('Form submission failed.');
                     }
                 } catch (error) {
-                        formElement.innerHTML = `
+                    formElement.innerHTML = `
                         <div role="alert" aria-live="assertive" class="fade-in-quick w-full border-l-2 border-red-600 bg-[#0a0202]/70 p-4 relative overflow-hidden rounded-sm">
                             <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent"></div>
                     
