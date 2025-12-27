@@ -1,6 +1,6 @@
 ---
 title: Privacy Specification
-type: docs
+
 ---
 
 
