@@ -83,9 +83,11 @@
 
         .tech-grid {
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
             background-size: 100px 100px;
+            /* Shift the grid slightly to the left */
+            background-position: -15px -33px;
         }
 
         /* --- SHAPES --- */
@@ -259,6 +261,16 @@
                 box-shadow: none;
             }
         }
+
+        /* bootc icon styling to improve visibility on dark background */
+        .bootc-icon { width: 30px; height: 30px; filter: invert(1) brightness(1.4) saturate(0.9); transition: filter .18s ease, transform .18s ease; }
+        .group:hover .bootc-icon { filter: invert(1) brightness(1.8) drop-shadow(0 6px 12px rgba(58,83,255,0.12)); transform: translateY(-2px); }
+        /* Make inline SVG scale with text-size utility classes like Font Awesome icons */
+        .inline-svg { width: 1em; height: 1em; display: inline-block; vertical-align: middle; }
+
+        /* local-icon: use /images/container.svg as a mask so it behaves like font icons */
+        .local-icon { display:inline-block; width:1em; height:1em; vertical-align:middle; background-color: currentColor; -webkit-mask: url('/images/container.svg') no-repeat center/contain; mask: url('/images/container.svg') no-repeat center/contain; transition: background-color .12s ease, transform .18s ease, filter .18s ease; }
+        .group:hover .local-icon { transform: translateY(-0px); filter: drop-shadow(0 6px 12px rgba(58,83,255,0.12)); }
     </style>
 </head>
 
@@ -445,14 +457,14 @@
 
                     <!-- Card 1 -->
                     <div
-                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right">
+                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right flex flex-col h-full">
                         <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-blue/30">
                             <img class="w-full h-full hacker-img transform transition-transform duration-700"
                                 src="/images/alibaba.png" alt="Alibaba Report">
                             <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
                         </div>
 
-                        <div class="p-5 relative">
+                        <div class="p-5 relative flex flex-col flex-1">
                             <div
                                 class="absolute right-0 top-0 p-2 opacity-30 group-hover:opacity-100 transition-opacity">
                                 <i class="fa-solid fa-microchip text-4xl text-ind-border group-hover:text-ind-blue"></i>
@@ -482,14 +494,110 @@
                             </p>
 
                             <button
-                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-red transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(248,47,77,0.1)] font-tech">
+                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-red transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(248,47,77,0.1)] font-tech mt-auto">
                                 <span>Access File</span>
                                 <i class="fa-solid fa-arrow-right text-ind-red"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Card 2 -->
+                     <!-- Card 3 -->
+                    <div
+                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right flex flex-col h-full">
+                        <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-blue/30">
+                            <img class="w-full h-full hacker-img transform transition-transform duration-700"
+                                src="/images/ebpf.png" alt="DBS Report">
+                            <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
+                        </div>
+
+                        <div class="p-5 relative flex flex-col flex-1">
+                            <div
+                                class="absolute right-0 top-0 p-2 opacity-30 group-hover:opacity-100 transition-opacity">
+                                <i class="fa-solid fa-satellite-dish text-4xl text-ind-border group-hover:text-ind-blue"></i>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-2 h-2 bg-ind-blue rounded-sm"></span>
+                                    <span
+                                        class="text-[10px] text-gray-500 uppercase tracking-widest font-bold font-tech">
+                                        Observability</span>
+                                </div>
+                                <h3
+                                    class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-blue transition-colors uppercase">
+                                     eBPF REVOLUTION
+                                </h3>
+                                <div
+                                    class="text-ind-text font-mono text-xs uppercase tracking-wider mb-4 border-b border-dashed border-ind-border pb-4 font-tech">
+                                    Ref: NEXT_GEN_MONITORING
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-gray-400 font-mono leading-relaxed mb-6 font-tech">
+                                <span class="text-ind-red">></span> Logic in kernel, not userspace.<br>
+                                <span class="text-ind-red">></span> Zero overhead, high visibility.<br>
+                                <span class="text-ind-red">></span> No more sampling.
+                            </p>
+
+                            <button
+                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-red transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(248,47,77,0.1)] font-tech mt-auto">
+                                <span>Access File</span>
+                                <i class="fa-solid fa-arrow-right text-ind-red"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                   
+
+                     <!-- Card 4 -->
+                    <div
+                        class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right flex flex-col h-full">
+                        <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-blue/30">
+                            <img class="w-full h-full hacker-img transform transition-transform duration-700"
+                                src="/images/bootc.png" alt="bootc image: atomic, image-based boot">
+                            <div class="absolute inset-0 bg-hazard opacity-10 pointer-events-none"></div>
+                        </div>
+
+                        <div class="p-5 relative flex flex-col flex-1">
+                            <div
+                                class="absolute right-0 top-0 p-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                                <!-- Use <i> so it matches other icons; local-icon uses mask to pull /images/container.svg -->
+                                <i class="fa-solid fa-container-storage text-4xl text-ind-border group-hover:text-ind-blue local-icon" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-2 h-2 bg-ind-blue rounded-sm"></span>
+                                    <span
+                                        class="text-[10px] text-gray-500 uppercase tracking-widest font-bold font-tech">
+                                        INFRA MANAGEMENT</span>
+                                </div>
+                                <h3
+                                    class="font-industrial font-bold text-5xl text-white leading-[0.85] mb-2 group-hover:text-ind-blue transition-colors uppercase">
+                                     bootc 
+                                </h3>
+                                <div
+                                    class="text-ind-text font-mono text-xs uppercase tracking-wider mb-4 border-b border-dashed border-ind-border pb-4 font-tech">
+                                    Ref: BOOTC_IMAGE_MODEL
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-gray-400 font-mono leading-relaxed mb-6 font-tech">
+                                <span class="text-ind-red">></span> Transactional, immutable OS updates.<br>
+                                <span class="text-ind-red">></span> Image-based booting via OCI/Docker images.<br>
+                                <span class="text-ind-red">></span> Like Packer, but better.<br>
+                              
+                            </p>
+
+                            <button
+                                class="w-full border border-ind-border bg-ind-bg text-gray-400 py-3 px-4 text-xs font-bold uppercase tracking-widest hover:bg-ind-surface hover:text-white hover:border-ind-red transition-all flex justify-between items-center group-hover:shadow-[0_0_20px_rgba(248,47,77,0.1)] font-tech mt-auto">
+                                <span>Access File</span>
+                                <i class="fa-solid fa-arrow-right text-ind-red"></i>
+                            </button>
+                        </div>
+                    </div>
+                     <!-- Card 2 -->
                     <div
                         class="group relative bg-ind-panel border border-ind-border hover:border-ind-blue/50 transition-all duration-300 cut-corner-top-right">
                         <div class="relative overflow-hidden border-b border-ind-border group-hover:border-ind-blue/30">
@@ -534,18 +642,21 @@
                             </button>
                         </div>
                     </div>
+
+                    
+                    
                 </div>
             </section>
 
             <!-- Footer -->
-            <footer class="p-6 md:p-6 border-t border-ind-border bg-ind-panel">
+            <footer class="px-6 py-4 md:px-6 md:py-4 border-t border-ind-border bg-ind-panel">
                 <div
                     class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-gray-600 font-tech">
                     <div>
                         &copy; <span id="year"></span> ringcero systems // All Rights Reserved
                     </div>
                     <div class="flex gap-6">
-                        <a href="/privacy" class="hover:text-ind-blue transition-colors">Privacy_Protocol</a>
+                        <a href="/privacy-policy" class="hover:text-ind-blue transition-colors">Privacy_Protocol</a>
                         <a href="#" class="hover:text-ind-blue transition-colors">Term_Log</a>
                     </div>
                 </div>
